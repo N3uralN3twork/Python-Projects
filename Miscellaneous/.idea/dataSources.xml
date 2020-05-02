@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Form" uuid="e655b1d5-b2d7-4ce7-9f5e-564eef988009">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\MatthiasQ.MATTQ\Desktop\Python Projects\Miscellaneous\Form.db</jdbc-url>
+    </data-source>
+  </component>
+</project>

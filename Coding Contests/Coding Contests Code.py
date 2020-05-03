@@ -362,3 +362,138 @@ def list_of_multiples(num, length):
     return [(i+1)*num for i in range(length)]
 
 list_of_multiples(7, 5)
+
+
+
+
+# Calculate the profit:
+
+def profit(info: dict):
+    cost, sell, amount = info["cost_price"], info["sell_price"], info["inventory"]
+    return round(((sell*amount) - (cost*amount)), 0)
+
+
+info = {
+  "cost_price": 32.67,
+  "sell_price": 45.00,
+  "inventory": 1200
+       }
+
+profit(info)
+
+# Remove Strings from a list:
+
+def filter_list(lst: list)->list:
+    return [i for i in lst if type(i) is int]
+
+list1 = [1, 2, 3, "a", "b", 4]
+
+filter_list(list1)
+
+
+# Even Number Generator
+def find_even_nums(num: int):
+    nums = list(range(1, num+1))
+    return [i for i in nums if i%2 == 0]
+
+find_even_nums(8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

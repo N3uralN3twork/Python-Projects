@@ -45,6 +45,9 @@ pd.crosstab(index=yelp["Liked"], columns="count")
 # 502 likes
 # Pretty balanced data set
 
+#########################################################
+###           3. Data Cleaning                        ###
+#########################################################
 "Removing duplicate values:"
 # From an earlier project:
 def duplicate(df): # Addendum: 17 April 2020
@@ -100,6 +103,10 @@ X.shape # 996 obs. and top 1500 words
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
 
+
+#########################################################
+###           4. Modelling                            ###
+#########################################################
 "Naive Bayes Model"
 
 # In a previous R project, we learned about the NB model

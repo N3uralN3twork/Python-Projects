@@ -23,7 +23,7 @@ text = """   Harry Potter" is the most miserable, lonely boy you can imagine. He
 
 #To read in a text file as a single string for cleaning later on:
 #The following code is called a context manager, which saves us processing time.
-with open("C:/Users/MatthiasQ.MATTQ/Desktop/Python Projects/NLP/TheBeast by Lovecraft.txt", 'r') as file:
+with open("C:/Users/miqui/OneDrive/ML-DL-Datasets/TheBeast by Lovecraft.txt", 'r') as file:
     beast = file.read().replace('\n', '')
 len(beast)
 
@@ -31,7 +31,7 @@ len(beast)
 ########################Need to figure out how to parse this text file!!!!!!!!!!
 *All you have to do was specify the encoding at "utf-8" \
 
-with open("C:/Users/MatthiasQ.MATTQ/Desktop/Python Projects/NLP/Frankenstein.txt", "r", encoding = "utf8") as file:
+with open("C:/Users/miqui/OneDrive/ML-DL-Datasets/Frankenstein.txt", "r", encoding = "utf8") as file:
     Frankenstein = file.read().replace("\t", '')
 len(Frankenstein) #420,020 characters
 

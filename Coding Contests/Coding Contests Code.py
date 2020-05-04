@@ -399,31 +399,53 @@ def find_even_nums(num: int):
 find_even_nums(8)
 
 
+# Sum of positive integers
 
 
+def positive_sum(array: list):
+    positives = [i for i in array if i>0]
+    return sum(positives)
+
+list1 = [1, -4, 7, 12]
+positive_sum(list1)
+
+# Shortest Word in string
 
 
+def find_short(string):
+    words = string.split()
+    lengths = map(len, words)
+    return min(lengths)
+
+find_short("Hello there dude")
 
 
+def high_and_low(numbers: str):
+    numbers = numbers.split()
+    numbers = [int(i) for i in numbers]
+    minimum = min(numbers)
+    maximum = max(numbers)
+    print(f"'{maximum} {minimum}'")
+
+high_and_low("4 5 29 54 4 0 -214 542 -64 1 -3 6 -6")
+
+# Extract the century from the year
+def century(year: int):
+    return (year) // 100 + 1
+
+century(1900)
 
 
+# Remove vowels from a string
 
+def disemvowel(string: str):
+    vowels = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U"]
+    letters = list(string)
+    novowels = [i for i in letters if i not in vowels]
+    result = "".join(novowels)
+    return result
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+disemvowel("Hello")
 
 
 

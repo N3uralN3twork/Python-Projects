@@ -448,12 +448,35 @@ def disemvowel(string: str):
 disemvowel("Hello")
 
 
+# Abbreviate a Two Word Name
+
+def abbrevName(name: str):
+    parts = name.split()
+    FirstOne = name[0] # First Word First Letter
+    LastOne = parts[1][0] # Second Word First Letter
+    FirstOne = FirstOne.upper()
+    LastOne = LastOne.upper()
+    return FirstOne + "." + LastOne
+
+name = "Same Harris"
+name[0]
+abbrevName("tiffany Yulish")
+
+# Array plus Array:
+
+def array_sum(arr1, arr2):
+    return sum(arr1+arr2)
 
 
+# Is he gonna survive?
 
-
-
-
+def hero(bullets, dragons):
+    if dragons == 0:
+        return True
+    else:
+        return True if bullets/dragons >= 2 else False
+hero(7, 4)
+hero(200, 20)
 
 
 

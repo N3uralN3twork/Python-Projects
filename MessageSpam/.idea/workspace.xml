@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b90ea4b5-e0f5-495b-98ea-d5573fea5ec1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Shrek.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chromedriver.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShrekText" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spamming.py" beforeDir="false" afterPath="$PROJECT_DIR$/Spamming.py" afterDir="false" />
-    </list>
+    <list default="true" id="b90ea4b5-e0f5-495b-98ea-d5573fea5ec1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +32,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -51,7 +51,7 @@
       <updated>1588649655320</updated>
       <workItem from="1588649656466" duration="456000" />
       <workItem from="1588650290800" duration="255000" />
-      <workItem from="1588650709892" duration="311000" />
+      <workItem from="1588650709892" duration="536000" />
     </task>
     <servers />
   </component>

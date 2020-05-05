@@ -39,7 +39,7 @@ time.sleep(8)
 getUser = driver.find_element_by_xpath("//*[contains(text(), '" + friendName + "')]").click()
 
 movie_script = []
-with open('ShrekText.txt', "r") as f:
+with open('Shrek.txt', "r") as f:
     for line in f.readlines():
         for word in line.split():
             print(word)

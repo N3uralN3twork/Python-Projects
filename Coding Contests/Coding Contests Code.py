@@ -479,13 +479,17 @@ hero(7, 4)
 hero(200, 20)
 
 
+# Return the first M multiples of N
+def multiples(m, n):
+    n = int(n)
+    nums = list(range(1, (m*n+1)))
+    return [float(i) for i in nums if i%n == 0]
+
+multiples(3,5.0)
 
 
-
-
-
-
-
+def check(seq, elem):
+    return True if elem in seq else False
 
 
 

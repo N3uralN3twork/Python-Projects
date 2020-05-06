@@ -691,7 +691,7 @@ class EstimatorSelectionHelper:
 
         df = pd.concat(rows, axis=1).T.sort_values([sort_by], ascending=False)
 
-        columns = ['estimator', 'min_score', 'mean_score', 'max_score', 'std_score']
+        columns = ['estimator', 'min_score', 'mean_score', 'max_score', 'std_score', "range_score"]
         columns = columns + [c for c in df.columns if c not in columns]
 
         return df[columns]

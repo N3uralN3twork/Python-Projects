@@ -1,25 +1,18 @@
-# Using a Python dictionary to act as an adjacency list
-graph = {
-    'A' : ['B','C'],
-    'B' : ['D', 'E'],
-    'C' : ['F'],
-    'D' : [],
-    'E' : ['F'],
-    'F' : []
-}
+from sklearn.datasets import fetch_openml
+mnist = fetch_openml('mnist_784', version=1)
+mnist.keys()
 
-visited = set() # Set to keep track of visited nodes.
+X, y = mnist["data"], mnist["target"]
 
-def dfs(visited, graph, node):
-    if node not in visited:
-        print (node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
+X_train, X_test, y_train, y_test = X[:60000], X[60000:], y[:60000], y[60000:]
+y_train_5 = (y_train == 5)
+y_test_5 = (y_test == 5)
 
-# Driver Code
-dfs(visited, graph, 'A')
+from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import cross_val_predict
 
-
+sgd_clf = SGDClassifier(random_state=123).fit(X_train, y_train_5)
+y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=2,
+                                method="decision_function")
 
 

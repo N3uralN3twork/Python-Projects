@@ -491,8 +491,17 @@ multiples(3,5.0)
 def check(seq, elem):
     return True if elem in seq else False
 
+# Angle of right triangle
+def right_angle(AB:int, BC:int):
+    div = AB/BC
+    import math
+    return math.degrees(math.atan(div))
 
+right_angle(10,10)
 
+# (a^b)+(c^d)
+def integer_powers(a,b,c,d):
+    print((a**b)+(c**d))
 
 
 

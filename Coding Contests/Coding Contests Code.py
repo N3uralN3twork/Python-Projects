@@ -504,7 +504,16 @@ def integer_powers(a,b,c,d):
     print((a**b)+(c**d))
 
 
+# Find the missing number in a list of integers:
+    # Common algorithm
 
+def missing_num(lst: list)->int:
+    n = len(lst)
+    total = ((n+1)*(n+2))/2
+    sumList = sum(lst)
+    return total - sumList
+
+missing_num([1,2,4])
 
 
 

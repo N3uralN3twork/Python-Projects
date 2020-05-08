@@ -20,14 +20,10 @@ os.chdir(abspath)
 #########################################################
 ###           2. Import Data and Libraries            ###
 #########################################################
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-import nltk
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import confusion_matrix
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from pycm import ConfusionMatrix

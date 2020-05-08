@@ -2,7 +2,7 @@
 ###                     1.  Define Working Directory                        ###
 ###############################################################################
 import os
-abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python Projects/Coding Contests")
+abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python-Projects/Coding Contests")
 os.chdir(abspath)
 ###############################################################################
 ###                     2. Coding Contests                                  ###
@@ -514,6 +514,7 @@ def missing_num(lst: list)->int:
     return total - sumList
 
 missing_num([1,2,4])
+
 
 
 

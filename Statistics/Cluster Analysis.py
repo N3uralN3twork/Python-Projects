@@ -24,18 +24,14 @@ labels = db.labels_
 n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
 n_noise_ = list(labels).count(-1)
 
-print('Estimated number of clusters: %d' % n_clusters_)
-print('Estimated number of noise points: %d' % n_noise_)
-print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels_true, labels))
-print("Completeness: %0.3f" % metrics.completeness_score(labels_true, labels))
-print("V-measure: %0.3f" % metrics.v_measure_score(labels_true, labels))
-print("Adjusted Rand Index: %0.3f"
-      % metrics.adjusted_rand_score(labels_true, labels))
-print("Adjusted Mutual Information: %0.3f"
-      % metrics.adjusted_mutual_info_score(labels_true, labels))
-print("Silhouette Coefficient: %0.3f"
-      % metrics.silhouette_score(X, labels))
-
+print(f"Estimated number of clusters: {n_clusters_}")
+print(f"Estimated number of noise points: {n_noise_}")
+print(f"Homogeneity: {metrics.homogeneity_score(labels_true, labels):.3f}")
+print(f"Completeness: {metrics.completeness_score(labels_true, labels):.3f}")
+print(f"V-measure: {metrics.v_measure_score(labels_true, labels):.3f}")
+print(f"Adjusted Rand Index: {metrics.adjusted_rand_score(labels_true, labels):.3f}")
+print(f"Adjusted Mutual Information: {metrics.adjusted_mutual_info_score(labels_true, labels):.3f}")
+print(f"Silhouette Coefficient: {metrics.silhouette_score(X, labels):.3f}")
 # #############################################################################
 # Plot result
 import matplotlib.pyplot as plt

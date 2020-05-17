@@ -515,53 +515,37 @@ def missing_num(lst: list)->int:
 
 missing_num([1,2,4])
 
+# Given an amount, what is the minimum # of coins needed to pay for it?
+def ATM(n):
+    coins = [1, 5, 10, 25]
+    count = 0
+    if n == 0:
+        return 0
+    else:
+
+
+ATM(3)
+# I have an idea of how to complete this problem, but I'm just not sure
+# how to implement it.
 
 
 
+# Print the single unique number in a given list:
+def unique_num(lst:list)->list:
+    return [i for i in lst if lst.count(i) == 1]
+
+list1 = [1, 2, 1, 1]
+
+unique_num(list1)
+
+# Print out any duplicate variables:
+def duplicate_vars(lst:list):
+    predictors = [var for var in lst if lst.count(var) >= 2]
+    return set(predictors)
+variables = ["Age", "Sales", "Company", "Age"] # Age is the duplicate variable
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+duplicate_vars(variables)
 
 
 

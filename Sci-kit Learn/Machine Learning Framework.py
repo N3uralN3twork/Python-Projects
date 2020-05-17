@@ -14,13 +14,14 @@ Notes:
     Supposed to drop Zero-Variance variables before you center and scale them.
     Deal with missing values first instead of ignoring them.
     Use a likelihood-ratio test for feature selection
+    Added functionality to identify duplicate variables
 """
 
 ###############################################################################
 ###                     1.  Define Working Directory                        ###
 ###############################################################################
 import os
-abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python Projects/Sci-kit Learn")
+abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python-Projects/Sci-kit Learn")
 os.chdir(abspath)
 ###############################################################################
 ###                    2. Import Libraries and Models                       ###
@@ -33,12 +34,9 @@ import matplotlib.pyplot as plt
 import sklearn
 import missingno as msno
 import scikitplot as skplot
-from sklearn.impute import KNNImputer
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
-from sklearn.decomposition import PCA
 from sklearn.feature_selection import VarianceThreshold
 import statsmodels.api as sm
 
@@ -273,7 +271,7 @@ df["AaA"] = 1
 ##############################################################################
 Continuous  = list(df.select_dtypes(include=['int64', 'float64']).columns)
 
-"To Drop Duplicates:"
+"To Drop Duplicate Observations:"
 def duplicate(df): # Addendum: 17 April 2020
     start = df.shape[0]
     df2 = df.drop_duplicates(keep = "first")
@@ -282,6 +280,16 @@ def duplicate(df): # Addendum: 17 April 2020
     return df2
 df = duplicate(df)
 
+
+"To Drop Duplicate Variables:"
+def duplicate_vars(df): # Addendum: 17 May 2020
+    """Returns all of the duplicate variables by name
+       Then you would delete them using a dictionary"""
+    variables = list(df.columns)
+    predictors = [var for var in variables if variables.count(var) >= 2]
+    return set(predictors)
+
+duplicate_vars(df)
 
 "Missing Value Analysis"
 # To see what % of the data is missing for each variable

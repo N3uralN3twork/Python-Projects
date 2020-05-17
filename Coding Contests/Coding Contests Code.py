@@ -15,15 +15,13 @@ a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
 b = [i for i in a if i < 5]
 
+#or
+
 for number in range(len(a)):
     if a[number] < 5:
         print(a[number])
     else:
         pass
-
-#Or
-
-b = [i for i in a if i < 5]
 
 # Make a list of only first and lasat elements in a list
 

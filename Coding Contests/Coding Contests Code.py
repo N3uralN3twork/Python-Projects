@@ -542,10 +542,15 @@ def duplicate_vars(lst:list):
     return set(predictors)
 variables = ["Age", "Sales", "Company", "Age"] # Age is the duplicate variable
 
-
 duplicate_vars(variables)
 
 
+# Square every digit of a number:
+def square_digits(num: int):
+    string = str(num)
+    string = list(string)
+    nums = [int(i)**2 for i in string] # List comprehension
+    string = int("".join(map(str, nums))) # Using a map to convert elements into strings
+    return string
 
-
-
+square_digits(9119)

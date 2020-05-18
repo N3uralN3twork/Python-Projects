@@ -36,10 +36,10 @@ import missingno as msno
 import scikitplot as skplot
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
-from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
+from sklearn.preprocessing import StandardScaler, LabelEncoder, OrdinalEncoder
 from sklearn.feature_selection import VarianceThreshold
 import statsmodels.api as sm
-
+pd.set_option('display.max_columns', 10)
 
 "Import the data set"
 names = ['Ag', 'WorkClass', 'FnlWGT', 'Education',
@@ -67,7 +67,10 @@ df["Income"].value_counts()
 
 #Create a histogram of the continuous variables
 df.hist()
+plt.show()
 df.boxplot()
+plt.show()
+
 
 # 32,561 rows
 # 15 features
@@ -95,16 +98,17 @@ for name in Categorical:
 
 "Scatterplot Matrix"
 # Change colors and first line depending on your response classes.
-df.Income.value_counts()
 # Source: https://seaborn.pydata.org/examples/scatterplot_matrix.html
 sns.set(style = 'ticks')
 sns.pairplot(df, hue = "Income", diag_kind = 'kde')  # Change Class to outcome variable
+plt.show()
+
 
 "Bar Charts"
 sns.countplot(x = "Income", data = df)
 plt.show()
 df["Income"].value_counts()
-#A little imbalance in the data as well
+#More than 3 times as many people make less than $50,000 than those who make more.
 
 
 sns.countplot(x = "Relationship", data = df)
@@ -174,7 +178,7 @@ marital_dict = {" Never-married": "Never-married",
 df["Marital"] = df["Marital"].map(marital_dict)
 sns.factorplot(x = "Marital", hue = "Income",
                data = df, kind = "count")
-
+plt.show()
 #Clearly, if you are married, you're chances of making > 50K are higher
 #Those who are single probably lean towards the younger side and thus aren't
 #as advanced in his/her careers.
@@ -184,8 +188,7 @@ sns.factorplot(x = "Marital", hue = "Income",
 #df = df.loc[df["NativeCountry"].isin([" United-States", "Mexico"])]
 def CombineCategories(df, Category: str, N: int):
     top_N = df[Category].value_counts().nlargest(N).index
-    update = df[Category].where(df[Category].isin(top_N),
-                                other = "Other")
+    update = df[Category].where(df[Category].isin(top_N), other = "Other")
     return update
 
 country = CombineCategories(df, "NativeCountry", N = 2) #Keep top 2 categories and rest are "Other"
@@ -319,8 +322,8 @@ def high_missing_filter(df, missingPercent):
     for i in range (0, len(df.columns)):
         if missing_values[i] <= missingPercent:
             variable.append(variables[i])
-    df = df.filter(items = variable)  # Keep only rows with missing % under threshold
-    return df
+    result = df.filter(items = variable)  # Keep only rows with missing % under threshold
+    return result
 
 df = high_missing_filter(df = df, missingPercent = 60)
 df.shape # No missing data in our dataset
@@ -371,42 +374,41 @@ LowVariance(df, Continuous, Threshold = 0.0)
 df = df.drop("AaA", axis = 1)
 
 Continuous = list(df.select_dtypes(include=['int64', 'float64']).columns)
-
+Categorical = list(df.select_dtypes(include=['object', 'category']).columns)
+Categorical.remove("Income")
 
 
 _______________________________________________________________________________
 "1. One-Hot Encoding"
-#This should be used for nominal variables
-#Make a list of categorical variables first
-#Or, better yet, make a list of all categorical variables and then delete just the ordinal ones
+# This should be used for nominal variables
+# Make a list of categorical variables first
+# Or, better yet, make a list of all categorical variables and then delete just the ordinal ones
 Nominal = list(df.select_dtypes(include=['object', 'category']).columns)
-#Remove the ordinal and response variables, one by one
+# Remove the ordinal and response variables, one by one
 Nominal.remove("Income")
 Nominal.remove("Seniority")
-#One-hot encode the nominal variables
+# One-hot encode the nominal variables
 df = pd.get_dummies(df, drop_first = True, columns = Nominal)
 
 "2. Ordinal Label Encoding"
-#This should be used for ordinal variables
-#What I'm thinking is that ordinal variables should be encoded before nominal variables?
-#I talked to my friends and it apparently doesn't matter which variable type you do first.
-# Source:https://stackoverflow.com/questions/37292872/how-can-i-one-hot-encode-in-python
-# God-bless this person who made this function
-def dummyEncode(data, OrdinalColumns):
-    #You have to make a list of your ordinal variables first unfortunately
-    LE = LabelEncoder()
+# This should be used for ordinal variables
+# What I'm thinking is that ordinal variables should be encoded before nominal variables?
+# I talked to my friends and it apparently doesn't matter which variable type you do first.
+def OrdinalEncode(data, OrdinalColumns: list):
+    #You have to make a list of your ordinal variables first
+    OE = OrdinalEncoder()
     for feature in OrdinalColumns:
         try:
-            data[feature] = LE.fit_transform(data[feature])
+            data[feature] = OE.fit_transform(data[feature])
         except:
             print('Error encoding ' + feature)
     return data
 
 Ordinal = ["Seniority"] #This is where you make a list of your ordinal features.
-df = dummyEncode(data = df, OrdinalColumns = Ordinal)
-#How do I know that this preserves the order?
-
-
+df = OrdinalEncode(data = df, OrdinalColumns = Categorical)
+# How do I know that this preserves the order?
+# I suppose you could use a custom dictionary for each ordinal variable
+# However, that seems tedious...
 
 
 
@@ -474,7 +476,7 @@ plt.show()
 #DF = pd.concat([newDF, df["Class"]], axis = 1)
 
 
-
+"Feature Selection:"
 # Addendum: 17 April 2020
 # In CDA/MTH 531, you learned about feature selection by fitting a model with and without the covariate,
 # after which you would run a LR test or a chi-square test.
@@ -507,7 +509,7 @@ for dataset in datasets:
     results.append(sm.MNLogit(y, dataset).fit()) # Fit a multinomial logistic regression model
 
 
-# Show the model summaries, no, it's not iterable
+# Show the model summaries; no, it's not iterable
 results[0].summary()
 results[1].summary()
 results[2].summary()
@@ -524,7 +526,9 @@ results[12].summary()
 results[13].summary()
 
 # It looks like, from both R and Python, that we should drop the fnlWGT variable.
-
+# Addendum: 18th May 2020
+# However, you learned that sometimes confounding variables may affect your results,
+# Thus, we will leave FnlWGT in the upcoming models.
 
 "Removing unnecessary objects:"
 del names
@@ -545,7 +549,9 @@ del plot
 del missing_values
 del grid
 del pmax
-
+del intercept
+del covariates
+del column
 
 
 ###############################################################################
@@ -662,7 +668,7 @@ class EstimatorSelectionHelper:
 
     def fit(self, X, y, cv = 3, n_jobs = -1, verbose = 1, scoring = None, refit=False):
         for key in self.keys:
-            print("Running GridSearchCV for %s." % key)
+            print(f"Running GridSearchCV for {key}.")
             model = self.models[key]
             params = self.params[key]
             gs = GridSearchCV(model, params, cv = cv, n_jobs = n_jobs,

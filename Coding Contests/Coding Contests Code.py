@@ -577,3 +577,18 @@ greet("riley")
 greet("molly")
 
 
+def DNA_strand(dna: str):
+    compliments = {"A": "T", "C": "G", "T": "A", "G": "C"}
+    return "".join(compliments.get(i, i) for i in str(dna))
+DNA_strand("ATTGC")
+
+
+
+
+
+
+
+
+
+
+

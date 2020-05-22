@@ -554,3 +554,26 @@ def square_digits(num: int):
     return string
 
 square_digits(9119)
+
+
+# Is sum of squares of array greater than sum of cubes?
+def array_madness(a, b):
+    a2 = [a**2 for a in a]
+    b2 = [b**3 for b in b]
+    sumA = sum(a2)
+    sumB = sum(b2)
+    return True if sumA > sumB else False
+
+array_madness([4,5,6], [1,2,3])
+
+# Greet Me!
+# To convert a string to a proper string:
+    # use str.title()
+
+def greet(name: str):
+    #print(f"Hello {name.title()}!")
+    return "Hello" + " " + name.title() + "!"
+greet("riley")
+greet("molly")
+
+

@@ -582,13 +582,9 @@ def DNA_strand(dna: str):
     return "".join(compliments.get(i, i) for i in str(dna))
 DNA_strand("ATTGC")
 
+# Rearrange the digits to create the highest possible number:
 
 
-
-
-
-
-
-
-
-
+number = 123
+list1 = [int(i) for i in str(number)]
+list1.reverse()

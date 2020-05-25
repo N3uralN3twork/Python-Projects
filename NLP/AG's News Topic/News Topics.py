@@ -11,7 +11,6 @@ Dataset:
     https://data.wluper.com/
 """
 
-
 #########################################################
 ###           1. Set the working directory            ###
 #########################################################
@@ -36,15 +35,46 @@ train.tail()
 
 # Create two new variables: Title and Topic
 
-train.columns = ["Title", "Topic"] # Just like R
+train.columns = ["Title", "Topic"]  # Just like R
 test.columns = ["Title", "Topic"]
 
+train.head()
+
+train["Topic"].value_counts()
+test["Topic"].value_counts()
+# So there are 30,000 articles from each topic in the training set
+# 1,900 for each topic in the test set
 
 
 
+"Cleaning the Data:"
 
+# From a previous project:
+def Clean_DF_Text(text):
+    import re
+    from nltk.corpus import stopwords
+    import unicodedata
+    text = re.sub('<[^<]+?>', '', text) #Remove HTML
+    text = re.sub("[^a-zA-Z]", " ", text) #Remove punctuation
+    text = re.sub('[0-9]+', " ", text) #Remove numbers
+    text = text.strip()     #Remove whitespaces
+    text = re.sub(" +", " ", text) #Remove extra spaces
+    text = text.lower()     #Lowercase text
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("utf-8", "ignore") #Remove accents
+    stopwords = stopwords.words('english')
+    stopwords.remove("not") # Important custom words to keep
+    words = text.split()
+    clean_words = [word for word in words if word not in stopwords] # List comprehension
+    text = ' '.join(clean_words)
+    return text
 
+# Apply the cleaning function to our articles:
 
+train["Clean"] = train["Title"].apply(Clean_DF_Text)
+test["Clean"] = test["Title"].apply(Clean_DF_Text)
+
+train.head()
+test.head()
 
 
 

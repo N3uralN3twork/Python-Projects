@@ -6,6 +6,8 @@
 
 
 
+<<<<<<< HEAD
+=======
 
 
 from pycm import ConfusionMatrix
@@ -17,3 +19,4 @@ print(cm)
 
 
 
+>>>>>>> parent of 29faeee... NLP

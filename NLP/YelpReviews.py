@@ -69,6 +69,7 @@ def Clean_DF_Text(text):
     text = text.lower()     #Lowercase text
     text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("utf-8", "ignore") #Remove accents
     stopwords = stopwords.words('english')
+    stopwords.remove("not") # Important custom words to keep
     words = text.split()
     clean_words = [word for word in words if word not in stopwords] # List comprehension
     text = ' '.join(clean_words)

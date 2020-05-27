@@ -9,6 +9,7 @@ Sources:
     http://www.kecl.ntt.co.jp/uebetsu/index.html
     https://developers.google.com/machine-learning/guides/text-classification
     https://pbpython.com/categorical-encoding.html
+    https://www.tensorflow.org/api_docs/python/tf/keras/Model
 Dataset:
     https://data.wluper.com/
 """
@@ -24,10 +25,15 @@ os.chdir(abspath)
 ########################################################
 import pandas as pd
 import numpy as np
+import seaborn as sns
 import matplotlib.pyplot as plt
 from tensorflow.python.keras.preprocessing import sequence
 from tensorflow.python.keras.preprocessing import text
 from sklearn.preprocessing import LabelEncoder
+from keras.utils import to_categorical
+from tensorflow.keras.layers import Dense, Input, LSTM, Embedding, Dropout
+from tensorflow.keras.layers import GlobalMaxPool1D
+from tensorflow.keras.models import Model
 
 
 # Import the training and testing datasets
@@ -143,7 +149,8 @@ TOP_K = 20000
 MAX_SEQUENCE_LENGTH = 500
 
 def sequence_vectorize(train_texts, val_texts):
-    """Vectorizes texts as sequence vectors.
+    """
+    Vectorizes texts as sequence vectors.
 
     1 text = 1 sequence vector with fixed length.
 
@@ -186,6 +193,8 @@ We can simply convert labels into values in range [0, num_classes - 1]
 
 y_train = LabelEncoder().fit_transform(train["Topic"])
 y_val = LabelEncoder().fit_transform(test["Topic"])
+y_train = to_categorical(y_train)
+y_val = to_categorical(y_val)
 
 
 "Which layer should we use last?:"
@@ -214,12 +223,79 @@ Learning word relationships works best over many samples
 The following code constructs a four-layer sepCNN model:
 """
 
+maxlen = 124
+inp = Input(shape=(maxlen, ))
+embed_size = 128
+x = Embedding(TOP_K, embed_size)(inp)
+x = LSTM(60, return_sequences=True, name='lstm_layer')(x)
+x = GlobalMaxPool1D()(x)
+x = Dropout(0.1)(x)
+x = Dense(50, activation="relu")(x)
+x = Dropout(0.1)(x)
+x = Dense(4, activation="sigmoid")(x)
+
+"Compile the Model:"
+model = Model(inputs=inp, outputs=x)
+model.summary()
+model.compile(loss='binary_crossentropy',
+                  optimizer='adam',
+                  metrics=['accuracy'])
 
 
+"Fit the Model:"
+# Using 2 epochs
+history = model.fit(x_train, y_train,
+          epochs=2,
+          verbose=1,
+          validation_data=(x_val, y_val))
 
 
+"Plot the Model:"
 
+def plot_history(history):
+    sns.set()
+    loss_list = [s for s in history.history.keys() if 'loss' in s and 'val' not in s]
+    val_loss_list = [s for s in history.history.keys() if 'loss' in s and 'val' in s]
+    acc_list = [s for s in history.history.keys() if 'acc' in s and 'val' not in s]
+    val_acc_list = [s for s in history.history.keys() if 'acc' in s and 'val' in s]
 
+    if len(loss_list) == 0:
+        print('Loss is missing in history')
+        return
+
+        ## As loss always exists
+    epochs = range(1, len(history.history[loss_list[0]]) + 1)
+
+    ## Loss
+    plt.figure(1)
+    for l in loss_list:
+        plt.plot(epochs, history.history[l], 'b',
+                 label='Training loss (' + str(str(format(history.history[l][-1], '.5f')) + ')'))
+    for l in val_loss_list:
+        plt.plot(epochs, history.history[l], 'g',
+                 label='Validation loss (' + str(str(format(history.history[l][-1], '.5f')) + ')'))
+
+    plt.title('Loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+
+    ## Accuracy
+    plt.figure(2)
+    for l in acc_list:
+        plt.plot(epochs, history.history[l], 'b',
+                 label='Training accuracy (' + str(format(history.history[l][-1], '.5f')) + ')')
+    for l in val_acc_list:
+        plt.plot(epochs, history.history[l], 'g',
+                 label='Validation accuracy (' + str(format(history.history[l][-1], '.5f')) + ')')
+
+    plt.title('Accuracy')
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.show()
+
+plot_history(history=history)
 
 
 

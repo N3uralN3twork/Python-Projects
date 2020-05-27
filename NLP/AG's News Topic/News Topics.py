@@ -8,6 +8,7 @@ Sources:
     https://papers.nips.cc/paper/5782-character-level-convolutional-networks-for-text-classification.pdf
     http://www.kecl.ntt.co.jp/uebetsu/index.html
     https://developers.google.com/machine-learning/guides/text-classification
+    https://pbpython.com/categorical-encoding.html
 Dataset:
     https://data.wluper.com/
 """
@@ -26,6 +27,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.python.keras.preprocessing import sequence
 from tensorflow.python.keras.preprocessing import text
+from sklearn.preprocessing import LabelEncoder
+
 
 # Import the training and testing datasets
 train = pd.read_csv("AG__FULL.csv", header=None)
@@ -49,8 +52,6 @@ train["Topic"].value_counts()
 test["Topic"].value_counts()
 # So there are 30,000 articles from each topic in the training set
 # 1,900 for each topic in the test set
-
-
 
 "Cleaning the Data:"
 
@@ -81,12 +82,11 @@ test["Clean"] = test["Title"].apply(Clean_DF_Text)
 train.head()
 test.head()
 
-"Gather dataset metrics:"
+# Rearrange columns:
 
-# Number of samples: 120,000
-# Number of classes: 4
-# Number of samples per class: 30,000
-# Median number of words per sample: 30
+train = train[["Title", "Clean", "Topic"]]
+test = test[["Title", "Clean", "Topic"]]
+
 
 def get_num_words_per_sample(sample_texts):
     """Returns the median number of words per sample given corpus.
@@ -113,15 +113,26 @@ def plot_sample_length_distribution(sample_texts):
 
 plot_sample_length_distribution(train["Title"])
 
-From our experiments, we have observed that the ratio of “number of samples” (S) to “number of words per sample” (W) correlates with which model performs well.
-
 """
 From our experiments, we have observed that the ratio of “number of samples” (S) to “number of words per sample” (W) correlates with which model performs well.
 When the value for this ratio is small (<1500), small multi-layer perceptrons that take n-grams as input (which we'll call Option A) perform better or at least as well as sequence models.
 MLPs are simple to define and understand, and they take much less compute time than sequence models. 
 When the value for this ratio is large (>= 1500), use a sequence model (Option B).
-In the steps that follow, you can skip to the relevant subsections (labeled A or B) for the model type you chose based on the samples/words-per-sample ratio.
 """
+
+"Gather dataset metrics:"
+
+# Number of samples: 120,000
+# Number of classes: 4
+# Number of samples per class: 30,000
+# Median number of words per sample: 30
+
+120000/30
+"Thus, a sequence model should be used."
+
+#########################################################
+###           4. Word Embeddings                      ###
+#########################################################
 
 # Vectorization parameters
 # Limit on the number of features. We use the top 20K features.
@@ -167,4 +178,78 @@ def sequence_vectorize(train_texts, val_texts):
 x_train, x_val, word_index = sequence_vectorize(train["Clean"], test["Clean"])
 
 word_index
+
+"Label Vectorization:"
+"""
+We can simply convert labels into values in range [0, num_classes - 1]
+"""
+
+y_train = LabelEncoder().fit_transform(train["Topic"])
+y_val = LabelEncoder().fit_transform(test["Topic"])
+
+
+"Which layer should we use last?:"
+def get_last_layer_units_and_activation(num_classes):
+    """Gets the # units and activation function for the last network layer.
+    # Arguments
+        num_classes: int, number of classes.
+    # Returns
+        units, activation values.
+    """
+    if num_classes == 2:
+        activation = 'sigmoid'
+        units = 1
+    else:
+        activation = 'softmax'
+        units = num_classes
+    return units, activation
+
+# In this project, we have 4 classes
+get_last_layer_units_and_activation(num_classes=4)
+
+
+"Build the sequence model:"
+"""
+Learning word relationships works best over many samples
+The following code constructs a four-layer sepCNN model:
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

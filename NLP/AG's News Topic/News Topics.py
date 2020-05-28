@@ -12,6 +12,9 @@ Sources:
     https://www.tensorflow.org/api_docs/python/tf/keras/Model
 Dataset:
     https://data.wluper.com/
+Notes:
+    It should be noted that the accuracy of the model does not change much (about 1%)
+    whether you input cleaned text data or the original text.
 """
 
 #########################################################
@@ -27,13 +30,11 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from tensorflow.python.keras.preprocessing import sequence
-from tensorflow.python.keras.preprocessing import text
+from tensorflow.python.keras.preprocessing import sequence, text
 from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical
-from tensorflow.keras.layers import Dense, Input, LSTM, Embedding, Dropout
-from tensorflow.keras.layers import GlobalMaxPool1D
-from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Input, LSTM, Embedding, Dropout, GlobalMaxPool1D
+from tensorflow.keras.models import Model, Sequential
 
 
 # Import the training and testing datasets
@@ -233,9 +234,22 @@ x = Dropout(0.1)(x)
 x = Dense(50, activation="relu")(x)
 x = Dropout(0.1)(x)
 x = Dense(4, activation="sigmoid")(x)
+model = Model(inputs=inp, outputs=x)
+
+# OR
+
+model = Sequential()
+model.add(Embedding(TOP_K, 128, input_length=maxlen, name="Embedding"))
+model.add(LSTM(units=60, return_sequences=True, name="LSTM_layer"))
+model.add(GlobalMaxPool1D())
+model.add(Dropout(rate=0.1))
+model.add(Dense(units=50, activation="relu"))
+model.add(Dropout(rate=0.1))
+model.add(Dense(units=4, activation="softmax"))
+
+
 
 "Compile the Model:"
-model = Model(inputs=inp, outputs=x)
 model.summary()
 model.compile(loss='binary_crossentropy',
                   optimizer='adam',

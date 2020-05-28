@@ -588,3 +588,20 @@ DNA_strand("ATTGC")
 number = 123
 list1 = [int(i) for i in str(number)]
 list1.reverse()
+
+# Return only names that have 4 letters in them:
+
+people = ["Ryan", "Kieran", "Mark", "Jacob"]
+
+def friends(lst:list):
+    return [i for i in lst if len(i) == 4]
+
+friends(people)
+
+# Given three side lengths, do they form a triangle
+def triangle(a, b, c):
+    if (a+b) > c and (a+c) > b and (b+c) > a:
+        return True
+    else:
+        return False
+triangle(1,2,3)

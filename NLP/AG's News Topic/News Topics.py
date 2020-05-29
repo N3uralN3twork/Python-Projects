@@ -36,6 +36,8 @@ from keras.utils import to_categorical
 from tensorflow.keras.layers import Dense, Input, LSTM, Embedding, Dropout, GlobalMaxPool1D
 from tensorflow.keras.models import Model, Sequential
 sns.set()
+print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+
 
 # Import the training and testing datasets
 train = pd.read_csv("AG__FULL.csv", header=None)
@@ -45,6 +47,7 @@ test = pd.read_csv("AG__TEST.csv", header=None)
 train.head()
 train.tail()
 train.info()
+print(f"Training Set Memory Usage = {train.memory_usage().sum()/1024**2} MB")
 #########################################################
 ###           3. Data Cleaning                        ###
 #########################################################
@@ -258,7 +261,7 @@ model.add(Dense(units=4, activation="softmax"))
 model.summary()
 model.compile(loss='binary_crossentropy',
                   optimizer='adam',
-                  metrics=['accuracy', "AUC"])
+                  metrics=["accuracy", "AUC"])
 
 
 "Fit the Model:"

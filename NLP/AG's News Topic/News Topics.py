@@ -320,7 +320,7 @@ def plot_history(history):
 plot_history(history=history)
 
 
-
+keras.utils.plot_model(model, show_shapes=True)
 
 
 

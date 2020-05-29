@@ -35,7 +35,7 @@ from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical
 from tensorflow.keras.layers import Dense, Input, LSTM, Embedding, Dropout, GlobalMaxPool1D
 from tensorflow.keras.models import Model, Sequential
-
+sns.set()
 
 # Import the training and testing datasets
 train = pd.read_csv("AG__FULL.csv", header=None)
@@ -44,6 +44,7 @@ test = pd.read_csv("AG__TEST.csv", header=None)
 
 train.head()
 train.tail()
+train.info()
 #########################################################
 ###           3. Data Cleaning                        ###
 #########################################################
@@ -112,13 +113,15 @@ def plot_sample_length_distribution(sample_texts):
     # Arguments
         samples_texts: list, sample texts.
     """
-    plt.hist([len(s) for s in sample_texts], 50)
-    plt.xlabel('Length of a sample')
+    lengths = [len(i) for i in sample_texts]
+    plt.hist(lengths, 50)
+    plt.xlabel('Length of the title')
     plt.ylabel('Number of samples')
     plt.title('Sample length distribution')
     plt.show()
 
 plot_sample_length_distribution(train["Title"])
+
 
 """
 From our experiments, we have observed that the ratio of “number of samples” (S) to “number of words per sample” (W) correlates with which model performs well.
@@ -143,10 +146,11 @@ When the value for this ratio is large (>= 1500), use a sequence model (Option B
 
 # Vectorization parameters
 # Limit on the number of features. We use the top 20K features.
-TOP_K = 20000
+TOP_K = 20000 # words
 
 # Limit on the length of text sequences. Sequences longer than this
 # will be truncated.
+# Figure out an ideal value based on the length of text graph above!!!!!!!
 MAX_SEQUENCE_LENGTH = 500
 
 def sequence_vectorize(train_texts, val_texts):
@@ -238,6 +242,7 @@ model = Model(inputs=inp, outputs=x)
 
 # OR
 
+maxlen = 124 # Must equal the # of columns in x_train!!!
 model = Sequential()
 model.add(Embedding(TOP_K, 128, input_length=maxlen, name="Embedding"))
 model.add(LSTM(units=60, return_sequences=True, name="LSTM_layer"))
@@ -253,15 +258,18 @@ model.add(Dense(units=4, activation="softmax"))
 model.summary()
 model.compile(loss='binary_crossentropy',
                   optimizer='adam',
-                  metrics=['accuracy'])
+                  metrics=['accuracy', "AUC"])
 
 
 "Fit the Model:"
 # Using 2 epochs
 history = model.fit(x_train, y_train,
-          epochs=2,
+          epochs=4,
           verbose=1,
-          validation_data=(x_val, y_val))
+          validation_data=(x_val, y_val),
+          batch_size=64)
+
+
 
 
 "Plot the Model:"

@@ -1,11 +1,7 @@
-import tensorflow as tf
-from tensorflow import keras
-import tensorflow_hub as hub
-keras.utils.plot_model(model, show_shapes=True)\
-
-
-print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-
-
-bertLayer = hub.KerasLayer('https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/1', trainable=True)
-
+import numpy as np
+import pandas as pd
+import torch
+import transformers as ppb # pytorch transformers
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split

@@ -45,8 +45,8 @@ from tensorflow.keras.models import Model, Sequential
 sns.set()
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-train = pd.read_csv("AG__FULL.csv", header=None)
-test = pd.read_csv("AG__TEST.csv", header=None)
+train = pd.read_csv("IMDB Reviews.csv", header=0)
+test = pd.read_csv("test.csv", header=0)
 
 
 

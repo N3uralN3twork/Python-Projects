@@ -605,3 +605,13 @@ def triangle(a, b, c):
     else:
         return False
 triangle(1,2,3)
+
+
+def what_is(x):
+    if x is 42:
+        return 'everything'
+    elif x is 1764:
+        return 'everything squared'
+    else:
+        return 'nothing'
+what_is(42*42)

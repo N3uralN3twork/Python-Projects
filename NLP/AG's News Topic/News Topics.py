@@ -30,6 +30,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+import tensorflow as tf
 from tensorflow.python.keras.preprocessing import sequence, text
 from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical

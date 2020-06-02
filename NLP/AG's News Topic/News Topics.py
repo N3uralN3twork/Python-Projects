@@ -155,7 +155,7 @@ TOP_K = 20000 # words
 # Limit on the length of text sequences. Sequences longer than this
 # will be truncated.
 # Figure out an ideal value based on the length of text graph above!!!!!!!
-MAX_SEQUENCE_LENGTH = 500
+MAX_SEQUENCE_LENGTH = 450
 
 def sequence_vectorize(train_texts, val_texts):
     """

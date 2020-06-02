@@ -1,3 +1,5 @@
+# https://keras.io/examples/pretrained_word_embeddings/
+
 import os
 import sys
 import numpy as np

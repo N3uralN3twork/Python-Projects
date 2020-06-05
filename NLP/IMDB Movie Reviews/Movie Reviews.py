@@ -47,6 +47,11 @@ train = pd.read_csv("IMDB Reviews.csv", header=0)
 test = pd.read_csv("test.csv", header=0)
 
 train.head()
+test.head()
+
+# Import the ELMO model
+
+elmo = hub.Module("https://tfhub.dev/google/elmo/2", trainable=True)
 #########################################################
 ###           3. Data Cleaning                        ###
 #########################################################
@@ -78,8 +83,7 @@ def Clean_DF_Text(text):
 train["Clean"] = train["Review"].apply(Clean_DF_Text)
 test["Clean"] = test["Review"].apply(Clean_DF_Text)
 
-
-
+train.head()
 
 
 

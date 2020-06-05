@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cad82c51-98e6-4185-9922-ab9693461076" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +31,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../R Projects/ADAMS Board" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,6 +54,7 @@
       <workItem from="1589331769539" duration="1469000" />
       <workItem from="1589504628342" duration="121000" />
       <workItem from="1589504758581" duration="453000" />
+      <workItem from="1591113522557" duration="2123000" />
     </task>
     <servers />
   </component>
@@ -60,10 +62,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="267" y="275" key="FileChooserDialogImpl" timestamp="1589504929728">
+    <state x="267" y="275" key="FileChooserDialogImpl" timestamp="1591113616069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="267" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589504929728" />
+    <state x="267" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591113616069" />
     <state width="487" height="523" key="XDebugger.FullValuePopup" timestamp="1589326670143">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

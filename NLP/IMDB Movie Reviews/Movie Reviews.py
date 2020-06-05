@@ -2,7 +2,7 @@
 Title: IMDB Movie Reviews
 Author: Matt Quinn
 Date: 29th May 2020
-Goal: Use BERT to predict the sentiment of a movie review
+Goal: Predict the sentiment of a movie review
 Sources:
 
 Dataset:
@@ -10,6 +10,7 @@ Dataset:
     https://www.kaggle.com/atulanandjha/imdb-50k-movie-reviews-test-your-bert
 Notes:
     To get the current full dataset, I just rbinded the two above data sources.
+    ELMO is a rather large model (>350 MB)
 """
 
 from transformers import BertTokenizer
@@ -35,18 +36,61 @@ os.chdir(abspath)
 import pandas as pd
 import numpy as np
 import seaborn as sns
-import matplotlib.pyplot as plt
 import tensorflow as tf
-from tensorflow.python.keras.preprocessing import sequence, text
-from sklearn.preprocessing import LabelEncoder
-from keras.utils import to_categorical
-from tensorflow.keras.layers import Dense, Input, LSTM, Embedding, Dropout, GlobalMaxPool1D
-from tensorflow.keras.models import Model, Sequential
+import tensorflow_hub as hub
+
 sns.set()
+pd.set_option("display.max_colwidth", 200)
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
 train = pd.read_csv("IMDB Reviews.csv", header=0)
 test = pd.read_csv("test.csv", header=0)
+
+train.head()
+#########################################################
+###           3. Data Cleaning                        ###
+#########################################################
+
+train.columns
+test.columns
+
+# From a previous project
+def Clean_DF_Text(text):
+    import re
+    from nltk.corpus import stopwords
+    import unicodedata
+    text = re.sub('<[^<]+?>', '', text) #Remove HTML
+    text = re.sub("[^a-zA-Z]", " ", text) #Remove punctuation
+    text = re.sub('[0-9]+', " ", text) #Remove numbers
+    text = text.strip()     #Remove whitespaces
+    text = re.sub(" +", " ", text) #Remove extra spaces
+    text = text.lower()     #Lowercase text
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("utf-8", "ignore") #Remove accents
+    stopwords = stopwords.words('english')
+    stopwords.remove("not") # Important custom words to keep
+    words = text.split()
+    clean_words = [word for word in words if word not in stopwords] # List comprehension
+    text = ' '.join(clean_words)
+    return text
+
+# Apply the cleaning function to our articles:
+
+train["Clean"] = train["Review"].apply(Clean_DF_Text)
+test["Clean"] = test["Review"].apply(Clean_DF_Text)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

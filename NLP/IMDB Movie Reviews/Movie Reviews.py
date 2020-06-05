@@ -51,7 +51,8 @@ test.head()
 
 # Import the ELMO model
 
-elmo = hub.Module("https://tfhub.dev/google/elmo/2", trainable=True)
+elmo = hub.Module("https://tfhub.dev/google/elmo/3", trainable=True)
+
 #########################################################
 ###           3. Data Cleaning                        ###
 #########################################################

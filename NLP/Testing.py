@@ -43,7 +43,7 @@ tokenizer = Tokenizer()
 tokenizer.fit_on_texts(articles)
 
 word_index = tokenizer.word_index
-vocab_size=len(word_index)
+vocab_size = len(word_index)
 
 sequences = tokenizer.texts_to_sequences(articles)
 padded = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)

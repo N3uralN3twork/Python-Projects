@@ -1,43 +1,98 @@
-import tensorflow_datasets as tfds
-import tensorflow as tf
 import os
+abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python-Projects/NLP")
+os.chdir(abspath)
+import tensorflow as tf
+print(tf.__version__)
+import csv
+import numpy as np
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from nltk.corpus import stopwords
+STOPWORDS = set(stopwords.words("english"))
+# vocab_size = 5000
+embedding_dim = 100
+max_length = 200
+trunc_type = 'post'
+padding_type = 'post'
+oov_tok = '<OOV>'
+training_portion = .8
 
-DIRECTORY_URL = 'https://storage.googleapis.com/download.tensorflow.org/data/illiad/'
-FILE_NAMES = ['cowper.txt', 'derby.txt', 'butler.txt']
+articles = []
+labels = []
+with open("BBC News Articles.csv", 'r') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',')
+    next(reader)
+    for row in reader:
+        labels.append(row[0])
+        article = row[1]
+        for word in STOPWORDS:
+            token = ' ' + word + ' '
+            article = article.replace(token, ' ')
+            article = article.replace(' ', ' ')
+        articles.append(article)
+print(len(labels))
+print(len(articles))
 
-for name in FILE_NAMES:
-    text_dir = tf.keras.utils.get_file(name, origin=DIRECTORY_URL + name)
 
-parent_dir = os.path.dirname(text_dir)
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(articles)
+
+word_index = tokenizer.word_index
+vocab_size=len(word_index)
+
+sequences = tokenizer.texts_to_sequences(articles)
+padded = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)
+
+train_size = int(len(articles) * training_portion)
+training_sequences = padded[0:train_size]
+train_labels = labels[0:train_size]
+
+validation_sequences = padded[train_size:]
+validation_labels = labels[train_size:]
+
+label_tokenizer = Tokenizer()
+label_tokenizer.fit_on_texts(labels)
+
+training_label_seq = np.array(label_tokenizer.texts_to_sequences(train_labels))
+validation_label_seq = np.array(label_tokenizer.texts_to_sequences(validation_labels))
 
 
-def labeler(example, index):
-  return example, tf.cast(index, tf.int64)
 
-labeled_data_sets = []
+print(training_sequences.shape)
+print(validation_sequences.shape)
+print(training_label_seq.shape)
+print(validation_label_seq.shape)
+print(vocab_size)
+print(word_index['the'])
 
-for i, file_name in enumerate(FILE_NAMES):
-  lines_dataset = tf.data.TextLineDataset(os.path.join(parent_dir, file_name))
-  labeled_dataset = lines_dataset.map(lambda ex: labeler(ex, i))
-  labeled_data_sets.append(labeled_dataset)
+embeddings_index = {}
+with open("GLOVE Embeddings/glove.6B.100d.txt", encoding="utf-8") as f:
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coefs = np.asarray(values[1:], dtype="float32")
+        embeddings_index[word] = coefs
 
-BUFFER_SIZE = 50000
-BATCH_SIZE = 64
-TAKE_SIZE = 5000
+embeddings_matrix = np.zeros((vocab_size+1), embedding_dim)
+for word, i in word_index.items():
+    embedding_vector = embeddings_index.get(word)
+    if embedding_vector is not None:
+        embeddings_matrix[i] = embedding_vector
 
-all_labeled_data = labeled_data_sets[0]
-for labeled_dataset in labeled_data_sets[1:]:
-    all_labeled_data = all_labeled_data.concatenate(labeled_dataset)
 
-all_labeled_data = all_labeled_data.shuffle(
-    BUFFER_SIZE, reshuffle_each_iteration=False)
 
-tokenizer = tfds.features.text.Tokenizer()
 
-vocabulary_set = set()
-for text_tensor, _ in all_labeled_data:
-  some_tokens = tokenizer.tokenize(text_tensor.numpy())
-  vocabulary_set.update(some_tokens)
 
-vocab_size = len(vocabulary_set)
-vocab_size
+
+
+
+
+
+
+
+
+
+
+
+
+

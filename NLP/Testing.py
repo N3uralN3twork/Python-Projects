@@ -102,7 +102,7 @@ model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['
 model.summary()
 
 
-
+history = model.fit(training_sequences, training_label_seq, epochs=10, validation_data=(validation_sequences, validation_label_seq), verbose=2)
 
 
 

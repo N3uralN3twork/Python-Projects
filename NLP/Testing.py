@@ -1,3 +1,8 @@
+"""
+https://github.com/susanli2016/PyCon-Canada-2019-NLP-Tutorial/blob/master/BBC%20News_CNN_LSTM_glove.ipynb
+https://stackoverflow.com/questions/45917285/np-zerosdim-1-giving-datatype-not-understood/45920255
+"""
+
 import os
 abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python-Projects/NLP")
 os.chdir(abspath)
@@ -72,14 +77,15 @@ with open("GLOVE Embeddings/glove.6B.100d.txt", encoding="utf-8") as f:
         word = values[0]
         coefs = np.asarray(values[1:], dtype="float32")
         embeddings_index[word] = coefs
+f.close()
 
-embeddings_matrix = np.zeros((vocab_size+1), embedding_dim)
+embeddings_matrix = np.zeros((vocab_size+1, embedding_dim)) # Must be a tuple
 for word, i in word_index.items():
     embedding_vector = embeddings_index.get(word)
     if embedding_vector is not None:
         embeddings_matrix[i] = embedding_vector
 
-
+print(len(embeddings_matrix))
 
 
 

@@ -104,7 +104,7 @@ model.summary()
 
 history = model.fit(training_sequences, training_label_seq, epochs=10, validation_data=(validation_sequences, validation_label_seq), verbose=2)
 
-
+model.evaluate(x = validation_sequences, y = validation_label_seq)
 
 
 

@@ -79,6 +79,8 @@ with open("GLOVE Embeddings/glove.6B.100d.txt", encoding="utf-8") as f:
         embeddings_index[word] = coefs
 f.close()
 
+print(f"Found {len(embeddings_index)} word vectors.")
+
 embeddings_matrix = np.zeros((vocab_size+1, embedding_dim)) # Must be a tuple
 for word, i in word_index.items():
     embedding_vector = embeddings_index.get(word)

@@ -37,7 +37,6 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import tensorflow as tf
-import tensorflow_hub as hub
 
 sns.set()
 pd.set_option("display.max_colwidth", 200)
@@ -48,11 +47,6 @@ test = pd.read_csv("test.csv", header=0)
 
 train.head()
 test.head()
-
-# Import the ELMO model
-
-elmo = hub.Module("https://tfhub.dev/google/elmo/3", trainable=True)
-
 #########################################################
 ###           3. Data Cleaning                        ###
 #########################################################

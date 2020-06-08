@@ -34,7 +34,6 @@ os.chdir(abspath)
 ###           2. Import Data and Libraries            ###
 ########################################################
 import pandas as pd
-import numpy as np
 import seaborn as sns
 import tensorflow as tf
 

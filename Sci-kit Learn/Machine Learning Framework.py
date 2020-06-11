@@ -1,5 +1,9 @@
 """
 Created on 9th October, 2019
+Author: Matt Quinn
+Dataset: https://archive.ics.uci.edu/ml/datasets/census+income
+Citation: Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml].
+          Irvine, CA: University of California, School of Information and Computer Science.
 This is a never-ending project, always something useful to add
 Source 1: https://github.com/reiinakano/scikit-plot
 Source 2: https://github.com/sepandhaghighi/pycm
@@ -15,6 +19,8 @@ Notes:
     Deal with missing values first instead of ignoring them.
     Use a likelihood-ratio test for feature selection
     Added functionality to identify duplicate variables
+    Original dataset size for training was 32,561 observations
+        After Merge: 48,842 observations
 """
 
 ###############################################################################
@@ -49,7 +55,8 @@ names = ['Ag', 'WorkClass', 'FnlWGT', 'Education',
          'Relationship', "Race", "Sex", "Capital_Gain",
          "Capital_Loss", "Hours_Week", "NativeCountry",
          "Income"]
-df = pd.read_csv("Datasets/adults.csv", names = names, verbose=1)
+df1 = pd.read_csv("Datasets/adults.csv", names=names, verbose=1)
+df2 = pd.read_csv("Datasets/")
 #If you have a unique identifier, set that as your index_col when reading in the csv
 df.columns
 df.dtypes

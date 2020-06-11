@@ -11,4 +11,5 @@ import pandas as pd
 import numpy as np
 import statsmodels.formula.api as sfm
 
-dataset = pd.read_spss("")
+dataset = pd.read_csv("C:/Users/miqui/OneDrive/R Projects/SEM in R/Subset.csv")
+

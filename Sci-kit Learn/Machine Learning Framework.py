@@ -36,7 +36,7 @@ import missingno as msno
 import scikitplot as skplot
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
-from sklearn.preprocessing import StandardScaler, LabelEncoder, OrdinalEncoder
+from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.feature_selection import VarianceThreshold
 import statsmodels.api as sm
 pd.set_option('display.max_columns', 10)

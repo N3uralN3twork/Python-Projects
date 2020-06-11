@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cad82c51-98e6-4185-9922-ab9693461076" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../NLP/IMDB Movie Reviews/Movie Reviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NLP/IMDB Movie Reviews/Movie Reviews.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sci-kit Learn/Machine Learning Framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Sci-kit Learn/Machine Learning Framework.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
     </list>
@@ -57,6 +57,7 @@
       <workItem from="1589504758581" duration="453000" />
       <workItem from="1591113522557" duration="2123000" />
       <workItem from="1591641782171" duration="843000" />
+      <workItem from="1591826281822" duration="1058000" />
     </task>
     <servers />
   </component>

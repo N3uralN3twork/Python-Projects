@@ -582,7 +582,10 @@ del pmax
 del intercept
 del covariates
 del column
-
+del OE
+del y
+del datasets
+del Ordinal
 
 ###############################################################################
 ###                     6. Train-Test Split                                 ###
@@ -745,7 +748,7 @@ class EstimatorSelectionHelper:
 
 pipeline = EstimatorSelectionHelper(Models, HyperParams)
 pipeline.fit(x_train, y_train,
-             cv = 2, n_jobs = -2, refit = False, #Change cv to whatever you want
+             cv = 2, n_jobs = -3, refit = False, #Change cv to whatever you want
              scoring = "f1", verbose = 1)
 results = pipeline.score_summary(sort_by='mean_score')
 print(results)

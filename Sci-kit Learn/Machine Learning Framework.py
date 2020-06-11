@@ -429,14 +429,14 @@ def OrdinalEncode(data, OrdinalColumns: list):
     OE = OrdinalEncoder()
     for feature in OrdinalColumns:
         try:
-            data[feature] = OE.fit_transform(data[feature])
+            data[feature] = OE.fit_transform(data[[feature]])
         except:
             print(f"Error encoding {feature}")
     return data
 
 Ordinal = ["Seniority"] #This is where you make a list of your ordinal features.
-df = OrdinalEncode(data = df, OrdinalColumns = Categorical)
-# How do I know that this preserves the order?
+df = OrdinalEncode(data=df, OrdinalColumns=Ordinal)
+#How do I know that this preserves the order?
 # I suppose you could use a custom dictionary for each ordinal variable
 # However, that seems tedious...
 

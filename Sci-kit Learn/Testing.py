@@ -17,13 +17,13 @@ def OrdinalEncode(data, OrdinalColumns: list):
     OE = OrdinalEncoder()
     for feature in OrdinalColumns:
         try:
-            data[feature] = OE.fit_transform(data[feature])
+            data[feature] = OE.fit_transform(data[[feature]])
         except:
-            print('Error encoding ' + feature)
+            print(f"Error encoding {feature}")
     return data
 
 Ordinal = ["Seniority"] #This is where you make a list of your ordinal features.
 test = OrdinalEncode(data=test, OrdinalColumns=Ordinal)
 
 OE = OrdinalEncoder()
-OE.fit_transform(df[["Seniority"]])
+test["Seniority"] = OE.fit_transform(test[["Seniority"]])

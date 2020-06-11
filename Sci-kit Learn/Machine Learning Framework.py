@@ -40,6 +40,8 @@ from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.feature_selection import VarianceThreshold
 import statsmodels.api as sm
 pd.set_option('display.max_columns', 10)
+pd.set_option('display.max_rows', 200)
+
 
 "Import the data set"
 names = ['Ag', 'WorkClass', 'FnlWGT', 'Education',

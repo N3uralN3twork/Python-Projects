@@ -14,6 +14,8 @@ Source 6: https://stackoverflow.com/questions/31632637/label-axes-on-seaborn-bar
 Source 7: https://stackabuse.com/applying-filter-methods-in-python-for-feature-selection/
 Source 8: https://scikit-plot.readthedocs.io/en/stable/metrics.html
 Source 9: https://statcompute.wordpress.com/2013/08/23/multinomial-logit-with-python/
+Source 10: https://datacarpentry.org/python-ecology-lesson/05-merging-data/index.html
+Source 11: https://pandas.pydata.org/
 Notes:
     Supposed to drop Zero-Variance variables before you center and scale them.
     Deal with missing values first instead of ignoring them.
@@ -55,8 +57,19 @@ names = ['Ag', 'WorkClass', 'FnlWGT', 'Education',
          'Relationship', "Race", "Sex", "Capital_Gain",
          "Capital_Loss", "Hours_Week", "NativeCountry",
          "Income"]
-df1 = pd.read_csv("Datasets/adults.csv", names=names, verbose=1)
-df2 = pd.read_csv("Datasets/")
+
+train = pd.read_excel("Datasets/Adults.xlsx", names=names, verbose=1, sheet_name="Train")
+test = pd.read_excel("Datasets/Adults.xlsx", names=names, verbose=1, sheet_name="Test")
+
+# Combine the two data-frames and reset the index values:
+df = pd.concat([train, test], axis=0) # Stack rows on top of each other
+
+df = df.reset_index(drop=True) # To avoid the old index being added as a column
+
+del train
+del test
+del names
+
 #If you have a unique identifier, set that as your index_col when reading in the csv
 df.columns
 df.dtypes
@@ -71,8 +84,8 @@ df.dtypes
 plt.style.use('ggplot')
 df.head(3)
 df.info()
-df.describe()
-df["Income"].value_counts()
+df.describe() # Quite a few things to look out for up ahead
+df["Income"].value_counts() # You'll have to change this in the future to have only 2 outcomes
 
 #Create a histogram of the continuous variables
 df.hist()
@@ -81,7 +94,7 @@ df.boxplot()
 plt.show()
 
 
-# 32,561 rows
+# 48,840 rows
 # 15 features
 
 
@@ -105,7 +118,8 @@ for name in Categorical:
 #Also, I'm just going to remove the data where the level of the country is missing
     #This should be done prior to combining levels into an "Other" category
 
-"Scatterplot Matrix"
+"Scatter-plot Matrix"
+
 # Change colors and first line depending on your response classes.
 # Source: https://seaborn.pydata.org/examples/scatterplot_matrix.html
 sns.set(style = 'ticks')
@@ -138,8 +152,14 @@ df.columns
 
 "To refactor the levels of a variable in a dataset:"
 
+df["Income"].value_counts()
+
 df["Income"] = df["Income"].map({" <=50K": "Less50K",
-                                 " >50K": "More50K"})
+                                 " <=50K.": "Less50K",
+                                 " >50K": "More50K",
+                                 " >50K.": "More50K"
+                                 })
+df["Income"].value_counts()
 
 "This is where you create new variables for use in your models."
 #1. Create a variable based on seniority of the person's age
@@ -315,6 +335,7 @@ plt.show()
 #All solid means no missing values
 #Noice
 
+# An alternative to the one above:
 msno.matrix(df)
 plt.show()
 
@@ -410,7 +431,7 @@ def OrdinalEncode(data, OrdinalColumns: list):
         try:
             data[feature] = OE.fit_transform(data[feature])
         except:
-            print('Error encoding ' + feature)
+            print(f"Error encoding {feature}")
     return data
 
 Ordinal = ["Seniority"] #This is where you make a list of your ordinal features.

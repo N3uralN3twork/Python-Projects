@@ -4,7 +4,7 @@ Author: Matt Quinn
 Date: 29th May 2020
 Goal: Predict the sentiment of a movie review
 Sources:
-
+    https://colab.research.google.com/drive/1AstCNMK5_5MMKznrcKslUCFMCCNXk_ae#scrollTo=zxN6MvxWTSxt
 Dataset:
     https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
     https://www.kaggle.com/atulanandjha/imdb-50k-movie-reviews-test-your-bert
@@ -36,6 +36,8 @@ os.chdir(abspath)
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import json
+import copy
 import tensorflow as tf
 from transformers import BertTokenizer
 
@@ -91,6 +93,23 @@ plt.show()
 max_len = 2000
 
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+
+class InputExample(object):
+
+    def __init__(self, text_a, text_b=None, label=None):
+        self.text_a = text_a
+        self.text_b = text_b
+        self.label = label
+
+    def __repr__(self):
+        return str(self.to_json_string())
+
+    def to_dict(self):
+        output = copy.deepcopy(self.__dict__)
+        return output
+
+    def to_json_strings(self):
+        return json.dumps(self.to_dict(), indent=2, sort_keys=True) + "\n"
 
 
 

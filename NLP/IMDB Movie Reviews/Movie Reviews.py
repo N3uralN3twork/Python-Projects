@@ -36,10 +36,7 @@ os.chdir(abspath)
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import json
-import copy
 import tensorflow as tf
-from transformers import BertTokenizer
 
 sns.set()
 pd.set_option("display.max_colwidth", 200)

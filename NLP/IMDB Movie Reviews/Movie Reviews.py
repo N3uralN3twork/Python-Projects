@@ -35,7 +35,9 @@ os.chdir(abspath)
 #########################################################
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 import tensorflow as tf
+from transformers import BertTokenizer
 
 sns.set()
 pd.set_option("display.max_colwidth", 200)
@@ -79,11 +81,16 @@ test["Clean"] = test["Review"].apply(Clean_DF_Text)
 
 train.head()
 
+# Exploring the distribution of sentence lengths to figure out
+# what max sentence length to set and how much padding to do.
 
+lengths = [len(i) for i in train["Clean"]]
+sns.distplot(lengths)
+plt.show()
 
+max_len = 2000
 
-
-
+tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 
 
 

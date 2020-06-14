@@ -3,16 +3,27 @@
 
 
 import tensorflow as tf
-import tensorflow_hub as hub
-import matplotlib.pyplot as plt
+from tensorflow import keras
+import tensorflow_datasets as tfds
 import numpy as np
-import os
-import pandas as pd
-import re
-import seaborn as sns
+print(tf.__version__)
 
-module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
-model = hub.load(module_url)
-print ("module %s loaded" % module_url)
-def embed(input):
-  return model(input)
+dataset, info = tfds.load('imdb_reviews/subwords8k', with_info=True,
+                          as_supervised=True)
+train_dataset, test_dataset = dataset['train'], dataset['test']
+
+encoder = info.features["text"].encoder
+
+print(f"Vocabulary size: {encoder.vocab_size}")
+
+BUFFER_SIZE = 10000
+BATCH_SIZE = 4
+
+train_dataset = train_dataset.shuffle(BUFFER_SIZE)
+train_dataset = train_dataset.padded_batch(BATCH_SIZE)
+
+test_dataset = test_dataset.padded_batch(BATCH_SIZE)
+
+
+
+

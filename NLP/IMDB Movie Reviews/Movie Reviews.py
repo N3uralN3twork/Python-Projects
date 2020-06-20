@@ -37,6 +37,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import gensim
 
 sns.set()
 pd.set_option("display.max_colwidth", 200)

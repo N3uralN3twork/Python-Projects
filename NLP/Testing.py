@@ -1,8 +1,12 @@
 
+import numpy as np
 
-from gensim.models.word2vec import Word2Vec
-import gensim.downloader as api
-corpus = api.load("text8")
-model = Word2Vec(corpus)
-dir(model)
-
+embeddings_dictionary = dict()
+glove_file = open("C:/Users/miqui/OneDrive/Python-Projects/NLP/GLOVE Embeddings/glove.6B.100d.txt",
+                  encoding="utf-8")
+for line in glove_file:
+    records = line.split()
+    word = records[0]
+    vector_dimensions = np.asarray(records[1:], dtype="float32")
+    embeddings_dictionary[word] = vector_dimensions
+glove_file.close()

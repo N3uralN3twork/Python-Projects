@@ -121,7 +121,6 @@ for name in Categorical:
 "Scatter-plot Matrix"
 # Change colors and first line depending on your response classes.
 # Source: https://seaborn.pydata.org/examples/scatterplot_matrix.html
-sns.set(style = 'ticks')
 sns.pairplot(df, hue = "Income", diag_kind = 'kde')  # Change Class to outcome variable
 plt.show()
 

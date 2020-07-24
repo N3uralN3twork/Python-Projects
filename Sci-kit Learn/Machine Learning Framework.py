@@ -69,6 +69,7 @@ df = df.reset_index(drop=True) # To avoid the old index being added as a column
 del train
 del test
 del names
+del abspath
 
 #If you have a unique identifier, set that as your index_col when reading in the csv
 df.columns

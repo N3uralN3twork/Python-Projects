@@ -100,7 +100,6 @@ plt.show()
 
 
 "Variable Classes"
-
 Continuous  = list(df.select_dtypes(include=['int64', 'float64']).columns)
 Categorical = list(df.select_dtypes(include=['object', 'category']).columns)
 
@@ -120,7 +119,6 @@ for name in Categorical:
     #This should be done prior to combining levels into an "Other" category
 
 "Scatter-plot Matrix"
-
 # Change colors and first line depending on your response classes.
 # Source: https://seaborn.pydata.org/examples/scatterplot_matrix.html
 sns.set(style = 'ticks')

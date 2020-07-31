@@ -29,6 +29,7 @@ Notes:
 ###                     1.  Define Working Directory                        ###
 ###############################################################################
 import os
+
 abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python-Projects/Sci-kit Learn")
 os.chdir(abspath)
 ###############################################################################
@@ -47,9 +48,9 @@ from sklearn import preprocessing
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.feature_selection import VarianceThreshold
 import statsmodels.api as sm
+
 pd.set_option('display.max_columns', 10)
 pd.set_option('display.max_rows', 200)
-
 
 "Import the data set"
 names = ['Ag', 'WorkClass', 'FnlWGT', 'Education',
@@ -62,21 +63,21 @@ train = pd.read_excel("Datasets/Adults.xlsx", names=names, verbose=1, sheet_name
 test = pd.read_excel("Datasets/Adults.xlsx", names=names, verbose=1, sheet_name="Test")
 
 # Combine the two data-frames and reset the index values:
-df = pd.concat([train, test], axis=0) # Stack rows on top of each other
+df = pd.concat([train, test], axis=0)  # Stack rows on top of each other
 
-df = df.reset_index(drop=True) # To avoid the old index being added as a column
+df = df.reset_index(drop=True)  # To avoid the old index being added as a column
 
 del train
 del test
 del names
 del abspath
 
-#If you have a unique identifier, set that as your index_col when reading in the csv
+# If you have a unique identifier, set that as your index_col when reading in the csv
 df.columns
 df.dtypes
 
-#6 continuous
-#9 categorical
+# 6 continuous
+# 9 categorical
 
 ###############################################################################
 ###                      3. Exploratory Data Analysis                       ###
@@ -85,22 +86,21 @@ df.dtypes
 plt.style.use('ggplot')
 df.head(3)
 df.info()
-df.describe() # Quite a few things to look out for up ahead
-df["Income"].value_counts() # You'll have to change this in the future to have only 2 outcomes
+df.describe()  # Quite a few things to look out for up ahead
+df["Income"].value_counts()  # You'll have to change this in the future to have only 2 outcomes
 
-#Create a histogram of the continuous variables
+# Create a histogram of the continuous variables
 df.hist()
 plt.show()
 df.boxplot()
 plt.show()
-
 
 # 48,840 rows
 # 15 features
 
 
 "Variable Classes"
-Continuous  = list(df.select_dtypes(include=['int64', 'float64']).columns)
+Continuous = list(df.select_dtypes(include=['int64', 'float64']).columns)
 Categorical = list(df.select_dtypes(include=['object', 'category']).columns)
 
 Categorical.remove("Income")  # Replace Class with your response variable
@@ -111,32 +111,29 @@ for name in Categorical:
     print(name, ":")
     print(df[name].value_counts(), "\n")
 
-
-
-#It looks like we're going to have to combine some levels to make it more manageable
-    #So, like top 5 countries and top 6 employment options
-#Also, I'm just going to remove the data where the level of the country is missing
-    #This should be done prior to combining levels into an "Other" category
+# It looks like we're going to have to combine some levels to make it more manageable
+# So, like top 5 countries and top 6 employment options
+# Also, I'm just going to remove the data where the level of the country is missing
+# This should be done prior to combining levels into an "Other" category
 
 "Scatter-plot Matrix"
 # Change colors and first line depending on your response classes.
 # Source: https://seaborn.pydata.org/examples/scatterplot_matrix.html
-sns.pairplot(df, hue = "Income", diag_kind = 'kde')  # Change Class to outcome variable
+sns.pairplot(df, hue="Income", diag_kind='kde')  # Change Class to outcome variable
 plt.show()
-
 
 "Bar Charts"
-sns.countplot(x = "Income", data = df)
+sns.countplot(x="Income", data=df)
 plt.show()
 df["Income"].value_counts()
-#More than 3 times as many people make less than $50,000 than those who make more.
+# More than 3 times as many people make less than $50,000 than those who make more.
 
 
-sns.countplot(x = "Relationship", data = df)
+sns.countplot(x="Relationship", data=df)
 plt.show()
-sns.countplot(x = "Marital", data = df)
+sns.countplot(x="Marital", data=df)
 plt.show()
-#I'm just going to combine Married-spouse-absent and Married-AF-Spouse
+# I'm just going to combine Married-spouse-absent and Married-AF-Spouse
 ###############################################################################
 ###                      3. Feature Engineering                             ###
 ###############################################################################
@@ -145,7 +142,7 @@ plt.show()
 # in order to show how to rename a variable using pandas
 
 # df.rename(columns = {"old": "new"})
-df = df.rename(columns = {"Ag": "Age"})
+df = df.rename(columns={"Ag": "Age"})
 df.columns
 
 "To refactor the levels of a variable in a dataset:"
@@ -160,16 +157,16 @@ df["Income"] = df["Income"].map({" <=50K": "Less50K",
 df["Income"].value_counts()
 
 "This is where you create new variables for use in your models."
-#1. Create a variable based on seniority of the person's age
+# 1. Create a variable based on seniority of the person's age
 df["Seniority"] = np.where(df["Age"] >= 50, "Senior", "Youth")
 
-#2. Do they work overtime?
+# 2. Do they work overtime?
 df["Overtime"] = np.where(df["Hours_Week"] > 40, "Yes", "No")
 
-#3. Net Capital Gain
+# 3. Net Capital Gain
 df["NetCapitalGain"] = (df["Capital_Gain"] - df["Capital_Loss"])
 
-#4. Government worker or private sector
+# 4. Government worker or private sector
 gov_dict = {" Private": "No", " Self-emp-not-inc": "No",
             " Local-gov": "Yes", " ?": "?", " State-gov": "Yes",
             " Self-emp-inc": "No", " Federal-gov": "Yes",
@@ -177,23 +174,21 @@ gov_dict = {" Private": "No", " Self-emp-not-inc": "No",
 
 df["GovWorker"] = df["WorkClass"].map(gov_dict)
 
-#Why tf are there leading spaces in all of these damn entries.
+# Why tf are there leading spaces in all of these damn entries.
 
-#5. Let's drop the Education variable since EduNum has the same information
+# 5. Let's drop the Education variable since EduNum has the same information
 #   as well as Capital_Gain and Capital_Loss
 to_drop = ["Education", "Capital_Gain", "Capital_Loss", "WorkClass"]
-df.drop(to_drop, axis = 1, inplace = True)
+df.drop(to_drop, axis=1, inplace=True)
 
-
-#6. Drop rows that have "?" as a value in any categorical variable
-#Source: https://stackoverflow.com/questions/31663426/python-pandas-drop-rows-from-data-frame-on-string-match-from-list/31663495
+# 6. Drop rows that have "?" as a value in any categorical variable
+# Source: https://stackoverflow.com/questions/31663426/python-pandas-drop-rows-from-data-frame-on-string-match-from-list/31663495
 to_drop = ["?", " ?"]
 df = df[~df["Occupation"].isin(to_drop)]
 df = df[~df["NativeCountry"].isin(to_drop)]
 df = df[~df["GovWorker"].isin(to_drop)]
 
-
-#7. Combine Marital categories manually
+# 7. Combine Marital categories manually
 marital_dict = {" Never-married": "Never-married",
                 " Married-civ-spouse": "Married",
                 " Divorced": "Divorced",
@@ -203,33 +198,35 @@ marital_dict = {" Never-married": "Never-married",
                 " Married-AF-spouse": "Married"}
 
 df["Marital"] = df["Marital"].map(marital_dict)
-sns.factorplot(x = "Marital", hue = "Income",
-               data = df, kind = "count")
+sns.factorplot(x="Marital", hue="Income",
+               data=df, kind="count")
 plt.show()
-#Clearly, if you are married, you're chances of making > 50K are higher
-#Those who are single probably lean towards the younger side and thus aren't
-#as advanced in his/her careers.
 
 
-#8. Combine some levels in order to reduce the number of levels for each categorical variable
-#df = df.loc[df["NativeCountry"].isin([" United-States", "Mexico"])]
+# Clearly, if you are married, you're chances of making > 50K are higher
+# Those who are single probably lean towards the younger side and thus aren't
+# as advanced in his/her careers.
+
+
+# 8. Combine some levels in order to reduce the number of levels for each categorical variable
+# df = df.loc[df["NativeCountry"].isin([" United-States", "Mexico"])]
 def CombineCategories(df, Category: str, N: int):
     top_N = df[Category].value_counts().nlargest(N).index
-    update = df[Category].where(df[Category].isin(top_N), other = "Other")
+    update = df[Category].where(df[Category].isin(top_N), other="Other")
     return update
 
-country = CombineCategories(df, "NativeCountry", N = 2) #Keep top 2 categories and rest are "Other"
+
+country = CombineCategories(df, "NativeCountry", N=2)  # Keep top 2 categories and rest are "Other"
 df["NativeCountry"] = country
 df["NativeCountry"].value_counts()
-#This is nice because it's like a big puzzle that you have to find the pieces for and then fit those pieces in.
+# This is nice because it's like a big puzzle that you have to find the pieces for and then fit those pieces in.
 
 
-occupation = CombineCategories(df, "Occupation", N = 9)
+occupation = CombineCategories(df, "Occupation", N=9)
 df["Occupation"] = occupation
 df.Occupation.value_counts()
 
-
-#8. Reorder the columns:
+# 8. Reorder the columns:
 columns = ["Age", "FnlWGT", "Education_Num", "Marital", "Occupation",
            "Relationship", "Race", "Sex", "Hours_Week", "NativeCountry",
            "Seniority", "Overtime", "NetCapitalGain", "GovWorker", "Income"]
@@ -240,11 +237,11 @@ df.columns
 
 
 # correlation heatmap of dataset
-def correlation_heatmap(df, method = "pearson"):
+def correlation_heatmap(df, method="pearson"):
     _, ax = plt.subplots(figsize=(14, 14))
     colormap = sns.diverging_palette(220, 10, as_cmap=True)
     _ = sns.heatmap(
-        df.corr(method = method),
+        df.corr(method=method),
         cmap=colormap,
         square=True,
         cbar_kws={'shrink': .9},
@@ -257,8 +254,8 @@ def correlation_heatmap(df, method = "pearson"):
     plt.show()
 
 
-correlation_heatmap(df, method = "pearson")
-#The inter-correlations look good.
+correlation_heatmap(df, method="pearson")
+# The inter-correlations look good.
 
 "Extracting Parts of a Date"
 # Assuming you have a date column:
@@ -275,8 +272,8 @@ time['month'] = pd.DatetimeIndex(data=time['birth_date']).month
 # To extract the weekday:
 time["weekday"] = pd.DatetimeIndex(data=time['birth_date']).dayofweek
 
-
 "Working with Text Variables"
+
 
 # If you want to say, extract the title from a given name:
 def get_title(name: str):
@@ -294,44 +291,50 @@ df = df[~df["Title"].isin(to_drop)]
 
 df.Title.value_counts()
 
-#Test
+# Test
 df["AaA"] = 1
 ##############################################################################
 ###                      4. Pre-processing                                 ###
 ##############################################################################
-Continuous  = list(df.select_dtypes(include=['int64', 'float64']).columns)
+Continuous = list(df.select_dtypes(include=['int64', 'float64']).columns)
 
 "To Drop Duplicate Observations:"
-def duplicate(df): # Addendum: 17 April 2020
+
+
+def duplicate(df):  # Addendum: 17 April 2020
     start = df.shape[0]
-    df2 = df.drop_duplicates(keep = "first")
+    df2 = df.drop_duplicates(keep="first")
     end = df2.shape[0]
-    print(f"Dropped {start-end} duplicates")
+    print(f"Dropped {start - end} duplicates")
     return df2
+
+
 df = duplicate(df)
 
-
 "To Drop Duplicate Variables:"
-def duplicate_vars(df): # Addendum: 17 May 2020
+
+
+def duplicate_vars(df):  # Addendum: 17 May 2020
     """Returns all of the duplicate variables by name
        Then you would delete them using a dictionary"""
     variables = list(df.columns)
     predictors = [var for var in variables if variables.count(var) >= 2]
     return set(predictors)
 
+
 duplicate_vars(df)
 
 "Missing Value Analysis"
 # To see what % of the data is missing for each variable
-missing_values = df.isnull().sum()/len(df)*100
-missing_values[missing_values>0].sort_values(ascending = False)
+missing_values = df.isnull().sum() / len(df) * 100
+missing_values[missing_values > 0].sort_values(ascending=False)
 missing_values
 
-#Heatmap of missing values:
-sns.heatmap(df.isnull(), cbar = True)
+# Heatmap of missing values:
+sns.heatmap(df.isnull(), cbar=True)
 plt.show()
-#All solid means no missing values
-#Noice
+# All solid means no missing values
+# Noice
 
 # An alternative to the one above:
 msno.matrix(df)
@@ -342,69 +345,75 @@ df.shape
 df = df.dropna()
 
 "TO REMOVE VARIABLES WITH HIGH % OF MISSING VALUES:"
+
+
 # This is a custom function I made based on someone else's work
 # Source: https://www.kaggle.com/pavansanagapati/simple-tutorial-dimensionality-reduction-methods
 def high_missing_filter(df, missingPercent):
     variables = df.columns
     variable = []
-    for i in range (0, len(df.columns)):
+    for i in range(0, len(df.columns)):
         if missing_values[i] <= missingPercent:
             variable.append(variables[i])
-    result = df.filter(items = variable)  # Keep only rows with missing % under threshold
+    result = df.filter(items=variable)  # Keep only rows with missing % under threshold
     return result
 
-df = high_missing_filter(df = df, missingPercent = 60)
-df.shape # No missing data in our dataset
 
+df = high_missing_filter(df=df, missingPercent=60)
+df.shape  # No missing data in our dataset
 
 "To check for variables that have non-unique values:"
 df2 = df
 df2["Filler"] = "Not Unique"
+
+
 def nonunique_columns(df: pd.DataFrame):
     for col in df.columns:
         if len(df[col].unique()) == 1:
             return col
 
-nonunique_columns(df2) #Noice
-#Then you would obviously drop the variable(s) listed since they won't add anything
-#to your models ahead.
 
-df = df.drop(columns = ["Filler"]) # Pass a list to drop the columns
+nonunique_columns(df2)  # Noice
+# Then you would obviously drop the variable(s) listed since they won't add anything
+# to your models ahead.
 
+df = df.drop(columns=["Filler"])  # Pass a list to drop the columns
 
 "To impute:"
 from impyute.imputation.cs import mice
+
 imputed_training = mice(df)
 
-
 "Drop Zero-Variance Variables:"
-#Addendum: 3 January 2020
-stats = pd.DataFrame(df[Continuous].describe()) #Create the dataset
-stats = np.transpose(stats) #Transpose to get stats column-wise
-plot = sns.barplot(x = stats.index, y = stats["mean"]) #Plot for easier interpretation
-plot.set(ylabel = "Standard Deviation", xlabel = "Variable")
+# Addendum: 3 January 2020
+stats = pd.DataFrame(df[Continuous].describe())  # Create the dataset
+stats = np.transpose(stats)  # Transpose to get stats column-wise
+plot = sns.barplot(x=stats.index, y=stats["mean"])  # Plot for easier interpretation
+plot.set(ylabel="Standard Deviation", xlabel="Variable")
 plt.show()
 
 "Keep in mind, I made this function myself on 21-9-2019"
 "Just some extra practice for definition writing"
+
+
 def LowVariance(df, Continuous, Threshold):
-    dfCont = df[Continuous] # Select just the continuous data
-    selector = VarianceThreshold(threshold = Threshold)
+    dfCont = df[Continuous]  # Select just the continuous data
+    selector = VarianceThreshold(threshold=Threshold)
     selector.fit(dfCont)
     constant_columns = [column for column in dfCont.columns
                         if column not in dfCont.columns[selector.get_support()]]
-    return constant_columns # Which variables are constant?
+    return constant_columns  # Which variables are constant?
 
-#Show the low-variance variables:
-LowVariance(df, Continuous, Threshold = 0.0)
+
+# Show the low-variance variables:
+LowVariance(df, Continuous, Threshold=0.0)
 
 # Drop the zero-variance variables here.
-df = df.drop("AaA", axis = 1)
+df = df.drop("AaA", axis=1)
 
 Continuous = list(df.select_dtypes(include=['int64', 'float64']).columns)
 Categorical = list(df.select_dtypes(include=['object', 'category']).columns)
 Categorical.remove("Income")
-
 
 _______________________________________________________________________________
 "1. One-Hot Encoding"
@@ -416,14 +425,16 @@ Nominal = list(df.select_dtypes(include=['object', 'category']).columns)
 Nominal.remove("Income")
 Nominal.remove("Seniority")
 # One-hot encode the nominal variables
-df = pd.get_dummies(df, drop_first = True, columns = Nominal)
+df = pd.get_dummies(df, drop_first=True, columns=Nominal)
 
 "2. Ordinal Label Encoding"
+
+
 # This should be used for ordinal variables
 # What I'm thinking is that ordinal variables should be encoded before nominal variables?
 # I talked to my friends and it apparently doesn't matter which variable type you do first.
 def OrdinalEncode(data, OrdinalColumns: list):
-    #You have to make a list of your ordinal variables first
+    # You have to make a list of your ordinal variables first
     OE = OrdinalEncoder()
     for feature in OrdinalColumns:
         try:
@@ -432,12 +443,12 @@ def OrdinalEncode(data, OrdinalColumns: list):
             print(f"Error encoding {feature}")
     return data
 
-Ordinal = ["Seniority"] #This is where you make a list of your ordinal features.
+
+Ordinal = ["Seniority"]  # This is where you make a list of your ordinal features.
 df = OrdinalEncode(data=df, OrdinalColumns=Ordinal)
-#How do I know that this preserves the order?
+# How do I know that this preserves the order?
 # I suppose you could use a custom dictionary for each ordinal variable
 # However, that seems tedious...
-
 
 
 "3. Scaling Continuous Variables"
@@ -449,13 +460,12 @@ df[Continuous].describe()
 df[Continuous].plot.kde()
 plt.show()
 
-#Good idea to scale your numeric variables.
+# Good idea to scale your numeric variables.
 # Pretty much z-scores for each numeric variable
 scaler = preprocessing.RobustScaler()  # Define the scaling method
 
-
 # You shouldn't always use a standard scaler, especially if your data is skewed
-#As we saw earlier, some of the numeric features were quite skewed, like age and FNLWGT
+# As we saw earlier, some of the numeric features were quite skewed, like age and FNLWGT
 "If your data is skewed, use the Robust Scaler"
 "If your features are normally distributed, use the Standard Scaler"
 "Use MinMax as default, if no outliers"
@@ -467,15 +477,15 @@ preprocessing.MinMaxScaler()
 df[Continuous] = scaler.fit_transform(df[Continuous])  # Don't scale the target
 # This took me like 3 days to figure out dude
 
-#10/21/2019
-#For some reason, the NetCapitalGain variable won't behave properly and scale down, so I scaled it myself using a Z-score
+# 10/21/2019
+# For some reason, the NetCapitalGain variable won't behave properly and scale down, so I scaled it myself using a Z-score
 df["NetCapitalGain"] = (df["NetCapitalGain"] - np.mean(df["NetCapitalGain"])) / np.std(df["NetCapitalGain"])
 df["NetCapitalGain"].describe()
 
 df[Continuous].plot.kde()
 plt.show()
 
-df[Continuous].describe() # To check your work
+df[Continuous].describe()  # To check your work
 
 "Plot relationships"
 grid = sns.PairGrid(data=df,
@@ -485,8 +495,6 @@ grid = grid.map_diag(plt.hist, bins=10, color="blue")
 grid = grid.map_lower(sns.kdeplot, cmap="Reds")
 plt.show()
 
-
-
 ###############################################################################
 ###             5. Feature Selection:                                       ###
 ###############################################################################
@@ -495,13 +503,13 @@ plt.show()
 # slower. So, you can select either PCA or LDA.
 # LDA assumes normality and equal variances
 # Specify how many variables you'd like to keep below
-#N_Variables = 20
-#pca = PCA(n_components = N_Variables)
-#x2 = df.loc[:, Features].values
-#principalComponents = pca.fit_transform(x2)
-#newDF = pd.DataFrame(data = principalComponents,
-#columns = ["PCA 1", "PCA 2", "PCA 3"])
-#DF = pd.concat([newDF, df["Class"]], axis = 1)
+# N_Variables = 20
+# pca = PCA(n_components = N_Variables)
+# x2 = df.loc[:, Features].values
+# principalComponents = pca.fit_transform(x2)
+# newDF = pd.DataFrame(data = principalComponents,
+# columns = ["PCA 1", "PCA 2", "PCA 3"])
+# DF = pd.concat([newDF, df["Class"]], axis = 1)
 
 
 "Feature Selection:"
@@ -515,27 +523,25 @@ df.columns
 y = df["Income"]
 
 # Single covariates:
-covariates = [] # Empty list
-for column in df.columns: # Select each column in the dataframe
+covariates = []  # Empty list
+for column in df.columns:  # Select each column in the dataframe
     covariates.append(column)
 covariates.remove("Income")
 
 # Build the individual datasets
 df.columns
-    # Build the intercept-only model
-intercept = pd.DataFrame(1, index=np.arange(1,30137), columns=np.arange(1))
+# Build the intercept-only model
+intercept = pd.DataFrame(1, index=np.arange(1, 30137), columns=np.arange(1))
 # Build the datasets via a for loop:
 datasets = []
-for column in covariates: # For each covariate
-    datasets.append(sm.add_constant(df.loc[:,column])) # Add the intercept to each covariate
+for column in covariates:  # For each covariate
+    datasets.append(sm.add_constant(df.loc[:, column]))  # Add the intercept to each covariate
 datasets
-
 
 # Build the models using another for loop
 results = []
 for dataset in datasets:
-    results.append(sm.MNLogit(y, dataset).fit()) # Fit a multinomial logistic regression model
-
+    results.append(sm.MNLogit(y, dataset).fit())  # Fit a multinomial logistic regression model
 
 # Show the model summaries; no, it's not iterable
 results[0].summary()
@@ -595,13 +601,13 @@ del Ordinal
 
 # Replace Class with your response variable
 y = df["Income"]
-x = df.drop(["Income"], axis = 1)  # Drop any unneeded variables
+x = df.drop(["Income"], axis=1)  # Drop any unneeded variables
 
 x_train, x_test, y_train, y_test = train_test_split(
     x, y,
-    test_size = 0.25,  # 75/25
-    random_state = 123,
-    stratify = y,
+    test_size=0.25,  # 75/25
+    random_state=123,
+    stratify=y,
     shuffle=True)
 
 ###############################################################################
@@ -640,14 +646,14 @@ HyperParams.update({"Logistic Regression":
                          }})
 
 HyperParams.update({"Random Forest": {
-                         "n_estimators": [350],
-                         "class_weight": ["balanced"],
-                         "max_features": ["auto", "sqrt", "log2"],
-                          "max_depth": [3, 4, 5, 6, 7, 8],
-                          "min_samples_split": [0.005, 0.01, 0.05],
-                          "min_samples_leaf": [0.005, 0.01, 0.05, 0.10],
-                          "n_jobs": [-1]
-                         }})
+    "n_estimators": [350],
+    "class_weight": ["balanced"],
+    "max_features": ["auto", "sqrt", "log2"],
+    "max_depth": [3, 4, 5, 6, 7, 8],
+    "min_samples_split": [0.005, 0.01, 0.05],
+    "min_samples_leaf": [0.005, 0.01, 0.05, 0.10],
+    "n_jobs": [-1]
+}})
 
 help(sklearn.ensemble.AdaBoostClassifier())
 
@@ -697,14 +703,14 @@ class EstimatorSelectionHelper:
         self.keys = models.keys()
         self.grid_searches = {}
 
-    def fit(self, X, y, cv = 3, n_jobs = -1, verbose = 1, scoring = None, refit=False):
+    def fit(self, X, y, cv=3, n_jobs=-1, verbose=1, scoring=None, refit=False):
         for key in self.keys:
             print(f"Running GridSearchCV for {key}.")
             model = self.models[key]
             params = self.params[key]
-            gs = GridSearchCV(model, params, cv = cv, n_jobs = n_jobs,
-                              verbose = verbose, scoring = "accuracy", refit = refit,
-                              return_train_score = True)
+            gs = GridSearchCV(model, params, cv=cv, n_jobs=n_jobs,
+                              verbose=verbose, scoring="accuracy", refit=refit,
+                              return_train_score=True)
             gs.fit(X, y)
             self.grid_searches[key] = gs
 
@@ -716,7 +722,7 @@ class EstimatorSelectionHelper:
                 'max_score': max(scores),
                 'mean_score': np.mean(scores),
                 'std_score': np.std(scores),
-                "range_score": (max(scores) - min(scores))         #My own metric
+                "range_score": (max(scores) - min(scores))  # My own metric
             }
             return pd.Series({**params, **d})
 
@@ -746,8 +752,8 @@ class EstimatorSelectionHelper:
 
 pipeline = EstimatorSelectionHelper(Models, HyperParams)
 pipeline.fit(x_train, y_train,
-             cv = 2, n_jobs = -3, refit = False, #Change cv to whatever you want
-             scoring = "f1", verbose = 1)
+             cv=2, n_jobs=-3, refit=False,  # Change cv to whatever you want
+             scoring="f1", verbose=1)
 results = pipeline.score_summary(sort_by='mean_score')
 print(results)
 
@@ -757,9 +763,9 @@ print(results)
 
 "This took quite a while to figure out the kinks"
 
-Forest = RandomForestClassifier(n_estimators = 250,
-                                random_state = 123,
-                                verbose = 2,
+Forest = RandomForestClassifier(n_estimators=250,
+                                random_state=123,
+                                verbose=2,
                                 n_jobs=10)
 
 Forest.fit(x, y)
@@ -768,35 +774,38 @@ Forest.fit(x, y)
 def imp_df(column_names, importances):
     df = pd.DataFrame({'feature': column_names,
                        'feature_importance': importances}) \
-           .sort_values('feature_importance', ascending = False) \
-           .reset_index(drop = True)
+        .sort_values('feature_importance', ascending=False) \
+        .reset_index(drop=True)
     return df
+
 
 Importances = imp_df(x.columns, Forest.feature_importances_)
 
 Importances
 
 "Plotting Feature Importances"
+
+
 # Source: https://github.com/erykml/medium_articles/blob/master/Machine%20Learning/feature_importance.ipynb
 
 
 def var_imp_plot(Importances, Title):
     Importances.columns = ['feature', 'feature_importance']
-    sns.barplot(x = "feature_importance", y = 'feature', data = Importances,) \
-                .set_title(Title, fontsize = 20)
+    sns.barplot(x="feature_importance", y='feature', data=Importances, ) \
+        .set_title(Title, fontsize=20)
     plt.show()
 
-var_imp_plot(Importances, Title = "Gini Feature Importances")
 
+var_imp_plot(Importances, Title="Gini Feature Importances")
 
 ###############################################################################
 #                       10.  Making Predictions                               #
 ###############################################################################
 
 "I was thinking of ways to make predictions on all of the models for quite a while"
-"Then I realized that would be pointless because I would only need to make predictions
+"Then I realized that would be pointless because I would only need to make predictions"
 "on the best model from the results."
-"In the future, you'd have to read the results table and find the best model at the top
+"In the future, you'd have to read the results table and find the best model at the top"
 "along with its parameters to train."
 
 # For this example, the best model is AdaBoost with:
@@ -804,10 +813,10 @@ var_imp_plot(Importances, Title = "Gini Feature Importances")
 # n_estimators = 400, since same as 500
 
 help(AdaBoostClassifier)
-BestModel = AdaBoostClassifier(n_estimators = 400,
-                               learning_rate = 0.01,
-                               random_state = 123,
-                               algorithm = "SAMME.R")
+BestModel = AdaBoostClassifier(n_estimators=400,
+                               learning_rate=0.01,
+                               random_state=123,
+                               algorithm="SAMME.R")
 
 BestModel.fit(x_train, y_train)
 # Making Predictions
@@ -819,17 +828,16 @@ probs = probs_multi[:, 1]
 #                       11. Model Performance               #
 #############################################################
 from pycm import ConfusionMatrix
+
 # Yes, both Sci-kit learn and PYCM give the same confusion matrix, thankfully.
 
 # Confusion Matrix and Extra Statistics:
 y_test = LabelEncoder().fit_transform(y_test)
 preds = LabelEncoder().fit_transform(preds)
-cm = ConfusionMatrix(actual_vector = y_test,
-                     predict_vector = preds)
+cm = ConfusionMatrix(actual_vector=y_test,
+                     predict_vector=preds)
 print(cm)
 
-
-
-#Plotting the ROC_AUC Curve:
-skplot.metrics.plot_roc(y_test,probs_multi)
+# Plotting the ROC_AUC Curve:
+skplot.metrics.plot_roc(y_test, probs_multi)
 plt.show()

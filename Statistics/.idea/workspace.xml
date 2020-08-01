@@ -21,6 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="JupyterTrust" id="23cb6793-7c8f-4622-9f6e-1afc072f5d55" />
   <component name="ProjectId" id="1X8dmkFBab7F15GgZ9sc8DeffIW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -41,6 +42,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -58,11 +60,12 @@
       <workItem from="1591113522557" duration="2123000" />
       <workItem from="1591641782171" duration="843000" />
       <workItem from="1591826281822" duration="1058000" />
+      <workItem from="1596241793305" duration="375000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="267" y="275" key="FileChooserDialogImpl" timestamp="1591113616069">

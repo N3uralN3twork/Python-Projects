@@ -616,4 +616,45 @@ def what_is(x):
         return 'nothing'
 what_is(42*42)
 
+# Given two lists, find the difference between the two:
+#   Ex: a = [1, 2, 3] and b = [3], so a-b = [1, 2]
+def diff_array(a, b):
+    c = [i for i in a if i not in b]
+    return c
+a = [1, 2, 3]
+b = [3]
+diff_array(a, b)
 
+# Maximum contiguous subarray problem!
+def maxSubArray(nums):
+    """Does not output 0 if all negative numbers"""
+    dp = [0 for i in range(len(a))]
+    dp[0] = nums[0]
+    for i in range(1, len(nums)):
+        dp[i] = max(dp[i-1]+nums[i],nums[i])
+    return max(dp)
+
+a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7]
+maxSubArray(a)
+
+# Check if a number is a power of 4
+def isPowerOfFour(num) -> bool:
+    if num%4 == 0:
+        return True
+    else:
+        return False
+
+isPowerOfFour(32)
+isPowerOfFour(-2147483648)
+
+# Test if a number is a palindrome:
+def isPalindrome(n):
+    string = str(n)
+    ls = list(string)
+    if ls == ls[::-1]:
+        return True
+    else:
+        return False
+
+isPalindrome(121)
+isPalindrome(100)

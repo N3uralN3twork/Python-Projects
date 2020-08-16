@@ -514,15 +514,6 @@ def missing_num(lst: list)->int:
 missing_num([1,2,4])
 
 # Given an amount, what is the minimum # of coins needed to pay for it?
-def ATM(n):
-    coins = [1, 5, 10, 25]
-    count = 0
-    if n == 0:
-        return 0
-    else:
-
-
-ATM(3)
 # I have an idea of how to complete this problem, but I'm just not sure
 # how to implement it.
 
@@ -631,7 +622,7 @@ def maxSubArray(nums):
     dp = [0 for i in range(len(a))]
     dp[0] = nums[0]
     for i in range(1, len(nums)):
-        dp[i] = max(dp[i-1]+nums[i],nums[i])
+        dp[i] = max(dp[i-1]+nums[i], nums[i])
     return max(dp)
 
 a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7]
@@ -658,3 +649,33 @@ def isPalindrome(n):
 
 isPalindrome(121)
 isPalindrome(100)
+
+# Create a running sum of a list of numbers
+def runningSum(nums):
+    runSum = 0
+    ls = []
+    for i in nums:
+        runSum += i
+        ls.append(runSum)
+    return ls
+
+runningSum([1, 2, 3, 4])
+
+# Sort an array; if None, return an empty array
+nums1 = [1, 2, 3, 10, 5]
+nums2 = None
+def solution(nums):
+    empty = []
+    if nums is None:
+        return empty
+    else:
+        return sorted(nums)
+solution(nums1)
+
+import re
+def add_binary(a, b):
+    sum = a+b
+    binary = bin(sum)
+    return re.sub("0b", "", binary)
+
+add_binary(0,1)

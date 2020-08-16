@@ -679,3 +679,6 @@ def add_binary(a, b):
     return re.sub("0b", "", binary)
 
 add_binary(0,1)
+
+########### CSES Problem Set ########
+# 1. Weird Algorithm

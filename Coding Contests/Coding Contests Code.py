@@ -681,4 +681,32 @@ def add_binary(a, b):
 add_binary(0,1)
 
 ########### CSES Problem Set ########
+"https://cses.fi/problemset/list/"
+
 # 1. Weird Algorithm
+n = int(input())
+print(n)
+while n > 1:
+    if n%2 == 0: # Test if even
+        n //= 2 # Divide by two and round to whole number
+    else: # If odd
+        n = (n*3)+1  # Multiply by 3 and add 1
+    print(n)
+
+# 2. Missing Number
+def MissingNumber():
+    n = int(input())
+    ls = [int(i) for i in input().split()]
+    total = sum(ls)
+    formula = (n*(n+1))//2
+    print(formula-total)
+
+# 3. Trailing Zeros
+def trailingZero():
+    n = int(input())
+    count = 0
+    i = 5
+    while (n / i >= 1):
+        count += int(n / i)
+        i *= 5
+    print(int(count))

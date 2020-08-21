@@ -29,9 +29,9 @@ Notes:
 ###                     1.  Define Working Directory                        ###
 ###############################################################################
 import os
-
 abspath = os.path.abspath("C:/Users/miqui/OneDrive/Python-Projects/Sci-kit Learn")
 os.chdir(abspath)
+os.listdir()
 ###############################################################################
 ###                    2. Import Libraries and Models                       ###
 ###############################################################################

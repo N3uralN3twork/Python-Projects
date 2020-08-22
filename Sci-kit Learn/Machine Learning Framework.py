@@ -42,7 +42,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import sklearn
 import missingno as msno
-import scikitplot as skplot
+import re
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
@@ -300,7 +300,6 @@ Continuous = list(df.select_dtypes(include=['int64', 'float64']).columns)
 
 "To Drop Duplicate Observations:"
 
-
 def duplicate(df):  # Addendum: 17 April 2020
     start = df.shape[0]
     df2 = df.drop_duplicates(keep="first")
@@ -313,14 +312,12 @@ df = duplicate(df)
 
 "To Drop Duplicate Variables:"
 
-
 def duplicate_vars(df):  # Addendum: 17 May 2020
     """Returns all of the duplicate variables by name
        Then you would delete them using a dictionary"""
     variables = list(df.columns)
     predictors = [var for var in variables if variables.count(var) >= 2]
     return set(predictors)
-
 
 duplicate_vars(df)
 
@@ -345,8 +342,6 @@ df.shape
 df = df.dropna()
 
 "TO REMOVE VARIABLES WITH HIGH % OF MISSING VALUES:"
-
-
 # This is a custom function I made based on someone else's work
 # Source: https://www.kaggle.com/pavansanagapati/simple-tutorial-dimensionality-reduction-methods
 def high_missing_filter(df, missingPercent):

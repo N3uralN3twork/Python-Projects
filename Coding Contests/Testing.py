@@ -1,13 +1,8 @@
-import pandas as pd
+def reverse(num):
+    ls = list(str(num))
+    ls = ls[::-1]
+    rev = "".join(ls)
+    return rev
 
-def schema(Sites, NSubjects):
-    matt = []
-    for i in range(Sites):
-        for j in range(NSubjects):
-            matt.append([i, j])
-    matt = pd.DataFrame(matt)
-    return matt
-
-
-schema(2, 2)
+reverse(-123)
 

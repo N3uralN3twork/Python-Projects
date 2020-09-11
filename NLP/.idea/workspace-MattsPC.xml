@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4b4418dc-3606-4aa8-9fb3-5dc5dc89fb1a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/NLP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NLP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Text Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Text Classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sci-kit Learn/.idea/Sci-kit Learn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sci-kit Learn/.idea/Sci-kit Learn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sci-kit Learn/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sci-kit Learn/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JupyterTrust" id="23cb6793-7c8f-4622-9f6e-1afc072f5d55" />
+  <component name="ProjectId" id="1bNEmqeIpL4hSNNIKYND74GCfq7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../R Projects/ADD Health" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Testing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Testing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b4418dc-3606-4aa8-9fb3-5dc5dc89fb1a" name="Default Changelist" comment="" />
+      <created>1588464312662</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588464312662</updated>
+      <workItem from="1588464313811" duration="4076000" />
+      <workItem from="1588468428180" duration="5000" />
+      <workItem from="1588902967750" duration="53000" />
+      <workItem from="1590331405376" duration="9681000" />
+      <workItem from="1590378050713" duration="2011000" />
+      <workItem from="1590430193095" duration="2805000" />
+      <workItem from="1590436836909" duration="2898000" />
+      <workItem from="1590451602148" duration="3671000" />
+      <workItem from="1590515903195" duration="628000" />
+      <workItem from="1590517506151" duration="213000" />
+      <workItem from="1590536296723" duration="123000" />
+      <workItem from="1590537320782" duration="9118000" />
+      <workItem from="1590604967031" duration="4615000" />
+      <workItem from="1590714747634" duration="273000" />
+      <workItem from="1590715048247" duration="3233000" />
+      <workItem from="1590719833044" duration="1007000" />
+      <workItem from="1590772266726" duration="1428000" />
+      <workItem from="1590775295135" duration="3915000" />
+      <workItem from="1590790196631" duration="1187000" />
+      <workItem from="1590791691661" duration="3834000" />
+      <workItem from="1590873073609" duration="36000" />
+      <workItem from="1590894960969" duration="544000" />
+      <workItem from="1590943740493" duration="6499000" />
+      <workItem from="1590973724613" duration="316000" />
+      <workItem from="1590974438577" duration="3169000" />
+      <workItem from="1591049875300" duration="2809000" />
+      <workItem from="1591068853279" duration="1324000" />
+      <workItem from="1591147014473" duration="3640000" />
+      <workItem from="1591156848144" duration="624000" />
+      <workItem from="1591159489118" duration="389000" />
+      <workItem from="1591231933745" duration="1436000" />
+      <workItem from="1591234494439" duration="1599000" />
+      <workItem from="1591321728126" duration="1195000" />
+      <workItem from="1591382517774" duration="4410000" />
+      <workItem from="1591411697496" duration="621000" />
+      <workItem from="1591414300334" duration="677000" />
+      <workItem from="1591415096299" duration="2623000" />
+      <workItem from="1591417814244" duration="173000" />
+      <workItem from="1591418002847" duration="139000" />
+      <workItem from="1591418202033" duration="118000" />
+      <workItem from="1591418335057" duration="4314000" />
+      <workItem from="1591483476463" duration="1652000" />
+      <workItem from="1591501422185" duration="1640000" />
+      <workItem from="1591531533534" duration="135000" />
+      <workItem from="1591587826903" duration="2459000" />
+      <workItem from="1591635880763" duration="880000" />
+      <workItem from="1591666202631" duration="1022000" />
+      <workItem from="1591673839628" duration="1133000" />
+      <workItem from="1591932443081" duration="773000" />
+      <workItem from="1591960917735" duration="2787000" />
+      <workItem from="1592004932157" duration="1223000" />
+      <workItem from="1592007215669" duration="1376000" />
+      <workItem from="1592098348301" duration="596000" />
+      <workItem from="1592098966184" duration="316000" />
+      <workItem from="1592099297273" duration="194000" />
+      <workItem from="1592099781364" duration="57000" />
+      <workItem from="1592099853522" duration="533000" />
+      <workItem from="1592107794276" duration="50000" />
+      <workItem from="1592161201237" duration="313000" />
+      <workItem from="1592161533841" duration="492000" />
+      <workItem from="1592333007155" duration="1039000" />
+      <workItem from="1592421019023" duration="598000" />
+      <workItem from="1592426493341" duration="151000" />
+      <workItem from="1592682730472" duration="341000" />
+      <workItem from="1592683099203" duration="3356000" />
+      <workItem from="1599704260818" duration="298000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1592426507710">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592426507710" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1591589991206">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591589991206" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1591589991206">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591589991206" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1591589991206">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591589991206" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1591589991206">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591589991206" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1592100080207">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592100080207" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1592161801043">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1592161801043" />
+    <state x="143" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1591418222702">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="143" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591418222702" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/NLP$Testing.coverage" NAME="Testing Coverage Results" MODIFIED="1591589967430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

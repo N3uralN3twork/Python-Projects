@@ -6,9 +6,9 @@ Source 1: https://towardsdatascience.com/multi-class-text-classification-with-sk
 ###                     1.  Define Working Directory                        ###
 ###############################################################################
 import os
-abspath = os.path.abspath('C:/Users/MatthiasQ.MATTQ/Desktop/Python Projects/NLP')
+abspath = os.path.abspath('C:/Users/miqui/OneDrive/Python-Projects/NLP')
 os.chdir(abspath)
-
+os.listdir()
 ###############################################################################
 ###                    2. Import Libraries, Models, and Data                ###
 ###############################################################################

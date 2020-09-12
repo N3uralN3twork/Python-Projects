@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ae2f2a-0406-4118-a1f7-fd49ad9d8f8a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Covid19.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Covid19.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TweetsAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/TweetsAnalysis.py" afterDir="false" />
@@ -23,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="JupyterTrust" id="23cb6793-7c8f-4622-9f6e-1afc072f5d55" />
+  <component name="JupyterTrust" id="b67d30a8-21dd-4230-8e98-7a9176f93e0c" />
   <component name="ProjectId" id="1hKKUPjQXJEfD2LxqDvYXzGdx40" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -53,9 +51,7 @@
       <updated>1599754358420</updated>
       <workItem from="1599754359451" duration="1777000" />
       <workItem from="1599790206580" duration="3756000" />
-      <workItem from="1599795171701" duration="4984000" />
-      <workItem from="1599851987772" duration="3365000" />
-      <workItem from="1599871998353" duration="3047000" />
+      <workItem from="1599795171701" duration="5022000" />
     </task>
     <servers />
   </component>

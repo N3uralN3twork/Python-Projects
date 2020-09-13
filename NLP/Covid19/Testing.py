@@ -9,10 +9,8 @@ re.sub(r'http\S+', " ", text2)  # Remove urls
 re.findall(r"#(\w+)", text3)  # Find hashtags
 
 
-
-
-
-
+sample["Sentiment_Score"]
+sample["Sentiment_Label"].value_counts()
 
 
 

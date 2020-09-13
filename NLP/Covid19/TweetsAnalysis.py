@@ -97,6 +97,10 @@ sample["Sentiment_Score"] = np.where(
     sample["Sentiment_Label"] == "NEGATIVE", -(sample["Sentiment_Score"]), sample["Sentiment_Score"]
 )
 
+# Table of Sentiment:
+sample["Sentiment_Label"].value_counts()
+
+
 
 # Create an Interactive Time-Series Plot of Sentiment:
 fig = go.Figure(

@@ -1,18 +1,11 @@
 import re
-from nltk.corpus import stopwords
-
-text = "https://t.co/prmHgbkOXb"
-text2 = "Hello https://www.google.com There"
-text3 = "hello #corona #coronavirus"
-re.sub(r'http\S+', " ", text2)  # Remove urls
-
-re.findall(r"#(\w+)", text3)  # Find hashtags
-
-
-sample["Sentiment_Score"]
-sample["Sentiment_Label"].value_counts()
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS
 
 
 
-
-
+text = "Hello There https://www.google.com"
+re.sub("((www\.[^\s]+)|(https?://[^\s]+))", "", text)
+text = re.sub(r'http\S+', " ", text)  # Second

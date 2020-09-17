@@ -5,6 +5,13 @@ Sources:
     https://stackoverflow.com/questions/2527892/parsing-a-tweet-to-extract-hashtags-into-an-array
     https://stackoverflow.com/questions/31866304/convert-a-column-in-pandas-to-one-long-string-python-3
     https://github.com/amueller/word_cloud
+
+API key: pxrtalYKquG8xj5w3jFMN6de4
+API secret key: KeYHuOkoau7TgHRSAcsh0YoYlwszVwp0DFlteofWDTE88yJixJ
+Bearer Token: AAAAAAAAAAAAAAAAAAAAAGgHHwEAAAAAsxZnAwDk4QpV8s9fQsTEMXMew%2FM%3DCzZSQauNVBKgik5j5nULjkEyd2Ptuw3VP4rdMRHEpeMi1mlfr2
+Access Token: 3091915332-sSi3ypvr9PE8eMWcG7SF54Dq69zfUP4PsyS9wcc
+Access Token Secret: zSaJupqLcfLlvDd4NsglYEo3Vle3hiX0UCtZGpXQ1tP40
+
 """
 #########################################################
 ###           1. Set the working directory            ###
@@ -59,7 +66,7 @@ def Clean_DF_Text(text):
     text = text.lower()  # Lowercase text
     text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("utf-8", "ignore")  # Remove accents
     stopwords = stopwords.words('english')
-    newStopWords = ["co", "https", "p"]  # Add custom stopwords
+    newStopWords = ["co", "https", "p", "amp"]  # Add custom stopwords
     stopwords.extend(newStopWords)  # Don't use append!
     stopwords.remove("not")  # Important custom words to keep
     words = text.split()  # Split the words into separate items
@@ -97,7 +104,7 @@ sample = EN_tweets.sample(n=1000)
 sample = sample.sort_values(by=["created_at"])
 
 # Select only the necessary columns:
-sample = sample[["created_at", "text", "Clean", "Hashtags", "Mentions", "Hour"]]
+sample = sample[["created_at", "text", "Clean", "Hashtags", "Mentions", "Hour", "verified"]]
 sample["Mentions"].value_counts()
 
 # Take a look at some cleaned text to check if it's a good standard:

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="22ae2f2a-0406-4118-a1f7-fd49ad9d8f8a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Covid19.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Covid19.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TweetsAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/TweetsAnalysis.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JupyterTrust" id="23cb6793-7c8f-4622-9f6e-1afc072f5d55" />
+  <component name="ProjectId" id="1hKKUPjQXJEfD2LxqDvYXzGdx40" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22ae2f2a-0406-4118-a1f7-fd49ad9d8f8a" name="Default Changelist" comment="" />
+      <created>1599754358420</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599754358420</updated>
+      <workItem from="1599754359451" duration="1777000" />
+      <workItem from="1599790206580" duration="3756000" />
+      <workItem from="1599795171701" duration="4984000" />
+      <workItem from="1599851987772" duration="3365000" />
+      <workItem from="1599871998353" duration="3047000" />
+      <workItem from="1599940248981" duration="1161000" />
+      <workItem from="1599958574779" duration="746000" />
+      <workItem from="1600020371746" duration="207000" />
+      <workItem from="1600028344038" duration="870000" />
+      <workItem from="1600032733820" duration="10038000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600028360126">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600028360126" />
+    <state width="390" height="415" key="XDebugger.FullValuePopup" timestamp="1600040315042">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="390" height="415" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1600040315042" />
+    <state width="487" height="523" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1599791197366" />
+    <state x="114" y="182" width="672" height="538" key="search.everywhere.popup" timestamp="1600041520157">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="114" y="182" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600041520157" />
+    <state x="143" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599840833038" />
+  </component>
+</project>

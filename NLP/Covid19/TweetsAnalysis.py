@@ -44,14 +44,25 @@ EN_tweets = tweets[tweets["lang"] == "en"]
 # Remove dataset to clear space:
 del tweets
 
-EN_tweets
+EN_tweets.info()
 
 # Remove the "Z" from the 'created_at" variable via regex:
 EN_tweets["created_at"] = EN_tweets["created_at"].apply(lambda x: re.sub("Z", "", x))
 
+# Test if a tweet is an original (not a retweet):
+def isRetweet(tweet):
+    if re.search("^RT", tweet) is not None:
+        return True
+    else:
+        return False
+
+
+EN_tweets["isRetweet"] = EN_tweets["text"].apply(isRetweet)
+EN_tweets["isRetweet"].value_counts()
 
 # Create a helper function to clean the tweets:
 # This is from a previous project
+
 
 def Clean_DF_Text(text):
     """Order matters so don't move things around"""
@@ -131,7 +142,6 @@ sample["Sentiment_Score"] = np.where(
 
 # Table of Sentiments (in %):
 sample["Sentiment_Label"].value_counts(normalize=True)*100
-
 
 
 # Create an Interactive Time-Series Plot of Sentiment:

@@ -118,6 +118,15 @@
       <workItem from="1600478289637" duration="2397000" />
       <workItem from="1600481289005" duration="3814000" />
       <workItem from="1600561602217" duration="6707000" />
+      <workItem from="1600640671473" duration="264000" />
+      <workItem from="1600641522440" duration="1768000" />
+      <workItem from="1600646777226" duration="1151000" />
+      <workItem from="1600649975884" duration="1266000" />
+      <workItem from="1600714610434" duration="780000" />
+      <workItem from="1600716191073" duration="3893000" />
+      <workItem from="1600730423681" duration="1081000" />
+      <workItem from="1600732207661" duration="3724000" />
+      <workItem from="1600783923024" duration="786000" />
     </task>
     <servers />
   </component>
@@ -158,11 +167,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600269529812" />
-    <state width="390" height="415" key="XDebugger.FullValuePopup" timestamp="1600569351005">
+    <state width="390" height="415" key="XDebugger.FullValuePopup" timestamp="1600652216556">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="390" height="415" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1600569351005" />
-    <state width="487" height="523" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1600048912210" />
+    <state width="390" height="415" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1600652216556" />
+    <state width="487" height="523" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1600650812999" />
+    <state x="674" y="326" key="cloudConfig.PluginsDialog" timestamp="1600783902534">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="674" y="326" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600783902534" />
     <state x="143" y="230" width="840" height="678" key="search.everywhere.popup" timestamp="1600553545801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

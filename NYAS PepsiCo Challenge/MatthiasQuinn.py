@@ -276,9 +276,7 @@ del Nominal
 del Continuous
 del keep
 del name
-del Nominal
 del Categorical
-del Continuous
 
 
 ###############################################################################
@@ -436,12 +434,10 @@ pipeline.fit(X=x_train, y=y_train,
 results = pipeline.score_summary()  # Print the results to a dataframe
 
 # Free up extra memory:
-del Categorical
 del AdaBoostRegressor
 del KNeighborsRegressor
 del LinearRegression
 del MLPRegressor
-del RandomForestRegressor
 del SVR
 ###############################################################################
 ###                      10. Hyper-parameter Tuning for RF                   ###
@@ -600,7 +596,6 @@ r_square(y_true=tf.convert_to_tensor(y, np.float32), y_pred=tf_preds)
 
 dir(history)
 
-
 # summarize history for R^2:
 plt.plot(history.history['r_square'])
 plt.plot(history.history['val_r_square'])
@@ -609,18 +604,3 @@ plt.ylabel('R^2')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

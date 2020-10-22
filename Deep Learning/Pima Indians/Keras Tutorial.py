@@ -11,15 +11,15 @@ Updated on 31st October to use Tensorflow 2.0
 Keras Tutorial
 
 import os
-abspath = os.path.abspath('C:/Users/MatthiasQ.MATTQ/Desktop/Python Projects/KerasTutorials/Pima Indians')
+abspath = os.path.abspath('C:/Users/miqui/OneDrive/Python-Projects/Deep Learning/Pima Indians')
 os.chdir(abspath)
+os.listdir()
+
 
 import numpy as np
+import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-import tensorflow.keras.losses
-import tensorflow.keras.metrics as metrics
 
 dataset = np.loadtxt("pima.csv", delimiter=",")
 dataset.shape
@@ -33,7 +33,7 @@ labels = dataset[:,8]
 'relu' - 'rectified linear unit activation function'
 
 #Defining the model
-model = keras.Sequential()
+model = tf.keras.Sequential()
 
 #We have 8 input variables so the input dimension is 8
 #The first hidden layer has 12 nodes and uses the relu function

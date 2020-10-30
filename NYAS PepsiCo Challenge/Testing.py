@@ -1,52 +1,31 @@
-from sklearn import datasets
-
-breast_cancer = datasets.load_breast_cancer()
-X_cancer = breast_cancer.data
-y_cancer = breast_cancer.target
-
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import AdaBoostClassifier
-from sklearn.ensemble import GradientBoostingClassifier
-
-models1 = {
-    'ExtraTreesClassifier': ExtraTreesClassifier(),
-    'RandomForestClassifier': RandomForestClassifier(),
-    'AdaBoostClassifier': AdaBoostClassifier(),
-    'GradientBoostingClassifier': GradientBoostingClassifier()
-}
-
-params1 = {
-    'ExtraTreesClassifier': { 'n_estimators': [16, 32] },
-    'RandomForestClassifier': [
-        { 'n_estimators': [16, 32] },
-        {'criterion': ['gini', 'entropy'], 'n_estimators': [8, 16]}],
-    'AdaBoostClassifier':  { 'n_estimators': [16, 32] },
-    'GradientBoostingClassifier': { 'n_estimators': [16, 32], 'learning_rate': [0.8, 1.0] }
-}
-
-helper1 = EstimatorSelectionHelper(models1, params1)
-helper1.fit(X_cancer, y_cancer, scoring="f1", n_jobs=2)
-results = helper1.score_summary()
 
 
+import tensorflow as tf
+tf.test.is_built_with_cuda()
+tf.test.is_built_with_gpu_support()
+tf.test.is_gpu_available()
 
+fashion_mnist = tf.keras.datasets.fashion_mnist
 
+(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
-from sklearn.impute import KNNImputer
+train_images = train_images / 255.0
 
-imputer = KNNImputer(n_neighbors=2)
-imputer.fit_transform(clean_df)
+test_images = test_images / 255.0
 
+model = tf.keras.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28, 28)),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dense(10)
+])
 
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
 
-
-
-
-
-
-
-
-
+model.summary()
+model.fit(train_images, train_labels, epochs=10)
 

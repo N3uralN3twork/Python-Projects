@@ -92,8 +92,8 @@ from sklearn.impute import IterativeImputer
 # Deep learning stuff
 import tensorflow as tf
 print(tf.__version__)
+tf.config.experimental.list_physical_devices()
 from tensorflow import keras
-from keras import backend as K
 from tensorflow.keras.models import Sequential
 import tensorflow_addons as tfa
 import tensorflow.keras.metrics as metrics
@@ -297,7 +297,7 @@ x_train, x_test, y_train, y_test = train_test_split(
     random_state=123,  # Set a random seed for reproducibility
     shuffle=True)
 
-del df
+"del df"
 ###############################################################################
 ###                      8. Choosing Parameter Space                        ###
 ###############################################################################
@@ -549,11 +549,10 @@ normalizer.adapt(np.array(x_train))
 
 # Adding a custom metric (R^2 is not built-in to tf for some reason):
 def r_square(y_true, y_pred):
-    from keras import backend as K
+    from tensorflow.keras import backend as K
     SSE = K.sum(K.square(y_true-y_pred))
     SST = K.sum(K.square(y_true - K.mean(y_true)))
     return 1 - SSE/(SST + K.epsilon())
-
 
 # Add a callback to run during training:
 # If the loss doesn't improve after 3 epochs, stop.

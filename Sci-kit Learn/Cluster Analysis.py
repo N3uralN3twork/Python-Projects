@@ -9,7 +9,6 @@ from sklearn.cluster import KMeans, SpectralClustering, AgglomerativeClustering
 import numpy as np
 import seaborn as sns
 import pandas as pd
-import pandas_profiling as pp
 
 sns.set_context('poster')
 sns.set_color_codes()

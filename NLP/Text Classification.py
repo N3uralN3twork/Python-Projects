@@ -118,8 +118,8 @@ ytest = np.array(y_test)
 preds = model.predict(x_test)
 
 #Confusion Matrix and Extra Statistics:
-cm = ConfusionMatrix(actual_vector = ytest,
-                     predict_vector = preds)
+cm = ConfusionMatrix(actual_vector=ytest,
+                     predict_vector=preds)
 print(cm)
 
 
@@ -169,3 +169,4 @@ model.fit(X_t, y,
           epochs = epochs,
           validation_split=0.2,
           verbose = 1)
+
